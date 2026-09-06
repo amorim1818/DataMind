@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>DataMind - Dashboard</title>
+
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+</head>
+
+<body>
+
+    <div
+        id="dashboard-container"
+        class="container-fluid py-4"
+    >
+
+        <!-- ===================================== -->
+        <!-- CABEÇALHO -->
+        <!-- ===================================== -->
+
+        <header
+            id="dashboard-header"
+            class="mb-4"
+        >
+
+            <div class="d-flex justify-content-between align-items-center">
+
+                <div>
+
+                    <h1
+                        id="dashboard-title"
+                        class="fw-bold"
+                    >
+                        Dashboard
+                    </h1>
+
+                    <p
+                        id="dashboard-welcome"
+                        class="text-muted mb-0"
+                    >
+                        Bem-vindo,
+                        <strong>
+                            <%= usuario.nome %>
+                        </strong>!
+                    </p>
+
+                </div>
+
+                <a
+                    id="btn-upload"
+                    class="btn btn-primary"
+                    href="/upload"
+                >
+                    Enviar arquivo
+                </a>
+
+            </div>
+
+        </header>
+
+
+        <!-- ===================================== -->
+        <!-- ARQUIVO ANALISADO -->
+        <!-- ===================================== -->
+
+        <section
+            id="arquivo-section"
+            class="mb-4"
+        >
+
+            <h2 class="h4 mb-3">
+                Arquivo analisado
+            </h2>
+
+            <% if (uploads && uploads.length > 0) { %>
+
+                <div
+                    id="arquivo-card"
+                    class="card shadow-sm"
+                >
+
+                    <div class="card-body">
+
+                        <h3
+                            id="arquivo-nome"
+                            class="h5"
+                        >
+                            <%= uploads[0].nome_arquivo %>
+                        </h3>
+
+                        <p
+                            id="arquivo-tipo"
+                            class="text-muted mb-0"
+                        >
+                            Arquivo analisado pelo DataMind
+                        </p>
+
+                    </div>
+
+                </div>
+
+            <% } else { %>
+
+                <div
+                    id="sem-arquivo"
+                    class="alert alert-info"
+                >
+                    Você ainda não enviou nenhum arquivo.
+                </div>
+
+            <% } %>
+
+        </section>
+
+
+        <% if (analise) { %>
+
+
+            <!-- ===================================== -->
+            <!-- INDICADORES GERAIS -->
+            <!-- ===================================== -->
+
+            <section
+                id="indicadores-section"
+                class="mb-5"
+            >
+
+                <h2 class="h4 mb-3">
+                    Indicadores gerais
+                </h2>
+
+                <div class="row g-3">
+
+                    <!-- LINHAS -->
+
+                    <div class="col-md-3">
+
+                        <div
+                            id="card-linhas"
+                            class="card shadow-sm h-100"
+                        >
+
+                            <div class="card-body">
+
+                                <p class="text-muted mb-1">
+                                    Linhas
+                                </p>
+
+                                <h3
+                                    id="valor-linhas"
+                                    class="fw-bold"
+                                >
+                                    <%= analise.linhas %>
+                                </h3>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- COLUNAS -->
+
+                    <div class="col-md-3">
+
+                        <div
+                            id="card-colunas"
+                            class="card shadow-sm h-100"
+                        >
+
+                            <div class="card-body">
+
+                                <p class="text-muted mb-1">
+                                    Colunas
+                                </p>
+
+                                <h3
+                                    id="valor-colunas"
+                                    class="fw-bold"
+                                >
+                                    <%= analise.colunas %>
+                                </h3>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- VALORES VAZIOS -->
+
+                    <div class="col-md-3">
+
+                        <div
+                            id="card-vazios"
+                            class="card shadow-sm h-100"
+                        >
+
+                            <div class="card-body">
+
+                                <p class="text-muted mb-1">
+                                    Valores vazios
+                                </p>
+
+                                <h3
+                                    id="valor-vazios"
+                                    class="fw-bold"
+                                >
+                                    <%= analise.valores_vazios %>
+                                </h3>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- DUPLICADOS -->
+
+                    <div class="col-md-3">
+
+                        <div
+                            id="card-duplicados"
+                            class="card shadow-sm h-100"
+                        >
+
+                            <div class="card-body">
+
+                                <p class="text-muted mb-1">
+                                    Duplicados
+                                </p>
+
+                                <h3
+                                    id="valor-duplicados"
+                                    class="fw-bold"
+                                >
+                                    <%= analise.duplicados %>
+                                </h3>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ===================================== -->
+            <!-- GRÁFICOS -->
+            <!-- ===================================== -->
+
+            <!-- ===================================== -->
+<!-- ANÁLISE VISUAL -->
+<!-- ===================================== -->
+
+<% if (
+    analise.dados &&
+    analise.dados.length > 0 &&
+    analise.colunas_numericas &&
+    analise.colunas_numericas.length > 0
+) { %>
+
+    <section
+        id="graficos-section"
+        class="mb-5"
+    >
+
+        <h2 class="h4 mb-3">
+            Análise visual
+        </h2>
+
+
+        <!-- ================================= -->
+        <!-- CONFIGURAÇÃO DO GRÁFICO -->
+        <!-- ================================= -->
+
+        <div
+            id="configuracao-grafico"
+            class="card shadow-sm mb-4"
+        >
+
+            <div class="card-body">
+
+                <div class="row g-3">
+
+
+                    <!-- EIXO X -->
+
+                    <div class="col-md-4">
+
+                        <label
+                            for="coluna-label"
+                            class="form-label"
+                        >
+                            Categoria
+                        </label>
+
+                        <select
+                            id="coluna-label"
+                            class="form-select"
+                        >
+
+                            <% analise.nome_colunas.forEach(
+                                coluna => {
+                            %>
+
+                                <option
+                                    value="<%= coluna %>"
+                                >
+                                    <%= coluna %>
+                                </option>
+
+                            <% }) %>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- VALORES -->
+
+                    <div class="col-md-4">
+
+                        <label
+                            for="coluna-valor"
+                            class="form-label"
+                        >
+                            Valores
+                        </label>
+
+                        <select
+                            id="coluna-valor"
+                            class="form-select"
+                        >
+
+                            <% analise.colunas_numericas.forEach(
+                                coluna => {
+                            %>
+
+                                <option
+                                    value="<%= coluna %>"
+                                >
+                                    <%= coluna %>
+                                </option>
+
+                            <% }) %>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- TIPO -->
+
+                    <div class="col-md-4">
+
+                        <label
+                            for="tipo-grafico"
+                            class="form-label"
+                        >
+                            Tipo de gráfico
+                        </label>
+
+                        <select
+                            id="tipo-grafico"
+                            class="form-select"
+                        >
+
+                            <option value="bar">
+                                Barras
+                            </option>
+
+                            <option value="line">
+                                Linha
+                            </option>
+
+                            <option value="pie">
+                                Pizza
+                            </option>
+
+                            <option value="doughnut">
+                                Rosca
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="mt-4">
+
+                    <button
+                        type="button"
+                        id="btn-gerar-grafico"
+                        class="btn btn-primary"
+                    >
+                        Gerar gráfico
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================================= -->
+        <!-- GRÁFICO -->
+        <!-- ================================= -->
+
+        <div
+            id="grafico-principal-card"
+            class="card shadow-sm"
+        >
+
+            <div class="card-body">
+
+                <h3
+                    id="titulo-grafico"
+                    class="h5 fw-bold mb-4"
+                >
+                    Visualização dos dados
+                </h3>
+
+                <div
+                    id="grafico-principal-container"
+                    style="position: relative; height: 450px;"
+                >
+
+                    <canvas
+                        id="grafico-principal"
+                    ></canvas>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+<% } %>
+
+            <!-- ===================================== -->
+            <!-- ESTATÍSTICAS -->
+            <!-- ===================================== -->
+
+            <% if (
+                analise.estatisticas &&
+                Object.keys(analise.estatisticas).length > 0
+            ) { %>
+
+                <section
+                    id="estatisticas-section"
+                    class="mb-5"
+                >
+
+                    <h2 class="h4 mb-3">
+                        Estatísticas dos dados
+                    </h2>
+
+
+                    <div class="row g-4">
+
+
+                        <% Object.entries(analise.estatisticas).forEach(
+                            ([coluna, estatistica]) => {
+                        %>
+
+
+                            <div class="col-lg-6">
+
+                                <div
+                                    class="card shadow-sm h-100"
+                                >
+
+                                    <div class="card-body">
+
+                                        <h3
+                                            class="h5 fw-bold mb-4"
+                                        >
+                                            <%= coluna %>
+                                        </h3>
+
+
+                                        <div class="row g-3">
+
+
+                                            <!-- SOMA -->
+
+                                            <div class="col-6">
+
+                                                <div
+                                                    id="estatistica-soma"
+                                                    class="border rounded p-3"
+                                                >
+
+                                                    <small class="text-muted">
+                                                        Soma
+                                                    </small>
+
+                                                    <div class="fs-5 fw-bold">
+
+                                                        <%= estatistica.soma ?? "-" %>
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+
+                                            <!-- MÉDIA -->
+
+                                            <div class="col-6">
+
+                                                <div
+                                                    id="estatistica-media"
+                                                    class="border rounded p-3"
+                                                >
+
+                                                    <small class="text-muted">
+                                                        Média
+                                                    </small>
+
+                                                    <div class="fs-5 fw-bold">
+
+                                                        <%= estatistica.media ?? "-" %>
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+
+                                            <!-- MÍNIMO -->
+
+                                            <div class="col-6">
+
+                                                <div
+                                                    id="estatistica-minimo"
+                                                    class="border rounded p-3"
+                                                >
+
+                                                    <small class="text-muted">
+                                                        Mínimo
+                                                    </small>
+
+                                                    <div class="fs-5 fw-bold">
+
+                                                        <%= estatistica.minimo ?? "-" %>
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+
+                                            <!-- MÁXIMO -->
+
+                                            <div class="col-6">
+
+                                                <div
+                                                    id="estatistica-maximo"
+                                                    class="border rounded p-3"
+                                                >
+
+                                                    <small class="text-muted">
+                                                        Máximo
+                                                    </small>
+
+                                                    <div class="fs-5 fw-bold">
+
+                                                        <%= estatistica.maximo ?? "-" %>
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+
+                                            <!-- MEDIANA -->
+
+                                            <div class="col-12">
+
+                                                <div
+                                                    id="estatistica-mediana"
+                                                    class="border rounded p-3"
+                                                >
+
+                                                    <small class="text-muted">
+                                                        Mediana
+                                                    </small>
+
+                                                    <div class="fs-5 fw-bold">
+
+                                                        <%= estatistica.mediana ?? "-" %>
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                        <% }) %>
+
+                    </div>
+
+                </section>
+
+            <% } %>
+
+
+            <!-- ===================================== -->
+            <!-- ESTRUTURA DOS DADOS -->
+            <!-- ===================================== -->
+
+            <section
+                id="colunas-section"
+                class="mb-5"
+            >
+
+                <h2 class="h4 mb-3">
+                    Estrutura dos dados
+                </h2>
+
+                <div class="row g-4">
+
+
+                    <!-- COLUNAS NUMÉRICAS -->
+
+                    <div class="col-md-6">
+
+                        <div
+                            id="colunas-numericas-card"
+                            class="card shadow-sm h-100"
+                        >
+
+                            <div class="card-body">
+
+                                <h3 class="h5">
+                                    Colunas numéricas
+                                </h3>
+
+                                <ul
+                                    id="lista-colunas-numericas"
+                                    class="list-group list-group-flush"
+                                >
+
+                                    <% if (
+                                        analise.colunas_numericas &&
+                                        analise.colunas_numericas.length > 0
+                                    ) { %>
+
+
+                                        <% analise.colunas_numericas.forEach(
+                                            coluna => {
+                                        %>
+
+                                            <li class="list-group-item">
+                                                <%= coluna %>
+                                            </li>
+
+                                        <% }) %>
+
+
+                                    <% } else { %>
+
+                                        <li class="list-group-item text-muted">
+                                            Nenhuma coluna numérica encontrada.
+                                        </li>
+
+                                    <% } %>
+
+                                </ul>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- COLUNAS DE TEXTO -->
+
+                    <div class="col-md-6">
+
+                        <div
+                            id="colunas-texto-card"
+                            class="card shadow-sm h-100"
+                        >
+
+                            <div class="card-body">
+
+                                <h3 class="h5">
+                                    Colunas de texto
+                                </h3>
+
+                                <ul
+                                    id="lista-colunas-texto"
+                                    class="list-group list-group-flush"
+                                >
+
+                                    <% if (
+                                        analise.colunas_texto &&
+                                        analise.colunas_texto.length > 0
+                                    ) { %>
+
+
+                                        <% analise.colunas_texto.forEach(
+                                            coluna => {
+                                        %>
+
+                                            <li class="list-group-item">
+                                                <%= coluna %>
+                                            </li>
+
+                                        <% }) %>
+
+
+                                    <% } else { %>
+
+                                        <li class="list-group-item text-muted">
+                                            Nenhuma coluna de texto encontrada.
+                                        </li>
+
+                                    <% } %>
+
+                                </ul>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </section>
+
+
+        <% } %>
+
+
+        <!-- ===================================== -->
+        <!-- SEM ANÁLISE -->
+        <!-- ===================================== -->
+
+        <% if (!analise && uploads && uploads.length > 0) { %>
+
+            <div
+                id="sem-analise"
+                class="alert alert-warning"
+            >
+
+                O arquivo foi enviado, mas ainda não possui uma análise.
+
+            </div>
+
+        <% } %>
+
+
+    </div>
+
+
+    <!-- ===================================== -->
+    <!-- CHART.JS -->
+    <!-- ===================================== -->
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/chart.js"
+    ></script>
+
+
+    <!-- ===================================== -->
+    <!-- CRIAÇÃO DOS GRÁFICOS -->
+    <!-- ===================================== -->
+<% if (
+    analise &&
+    analise.dados &&
+    analise.dados.length > 0
+) { %>
+
+<script>
+
+    // ==========================================
+    // DADOS RECEBIDOS DO PYTHON
+    // ==========================================
+
+    const dadosPlanilha =
+        <%- JSON.stringify(analise.dados) %>;
+
+
+    // ==========================================
+    // ELEMENTOS
+    // ==========================================
+
+    const colunaLabel =
+        document.getElementById("coluna-label");
+
+    const colunaValor =
+        document.getElementById("coluna-valor");
+
+    const tipoGrafico =
+        document.getElementById("tipo-grafico");
+
+    const botaoGerar =
+        document.getElementById("btn-gerar-grafico");
+
+    const tituloGrafico =
+        document.getElementById("titulo-grafico");
+
+    const elementoGrafico =
+        document.getElementById("grafico-principal");
+
+
+    // ==========================================
+    // INSTÂNCIA DO GRÁFICO
+    // ==========================================
+
+    let graficoAtual = null;
+
+
+    // ==========================================
+    // GERAR GRÁFICO
+    // ==========================================
+
+    function gerarGrafico() {
+
+        const colunaX =
+            colunaLabel.value;
+
+        const colunaY =
+            colunaValor.value;
+
+        const tipo =
+            tipoGrafico.value;
+
+
+        // Labels
+
+        const labels =
+            dadosPlanilha.map(
+                linha =>
+                    linha[colunaX]
+            );
+
+
+        // Valores
+
+        const valores =
+            dadosPlanilha.map(
+                linha =>
+                    linha[colunaY]
+            );
+
+
+        // Remove gráfico anterior
+
+        if (graficoAtual) {
+
+            graficoAtual.destroy();
+
+        }
+
+
+        // Atualiza título
+
+        tituloGrafico.textContent =
+            `${colunaY} por ${colunaX}`;
+
+
+        // Cria novo gráfico
+
+        graficoAtual =
+            new Chart(
+                elementoGrafico,
+                {
+
+                    type: tipo,
+
+                    data: {
+
+                        labels: labels,
+
+                        datasets: [
+
+                            {
+
+                                label:
+                                    `${colunaY} por ${colunaX}`,
+
+                                data: valores
+
+                            }
+
+                        ]
+
+                    },
+
+                    options: {
+
+                        responsive: true,
+
+                        maintainAspectRatio: false,
+
+                        plugins: {
+
+                            legend: {
+
+                                display:
+                                    tipo === "pie" ||
+                                    tipo === "doughnut"
+
+                            }
+
+                        },
+
+                        scales:
+                            tipo === "pie" ||
+                            tipo === "doughnut"
+
+                                ? {}
+
+                                : {
+
+                                    y: {
+
+                                        beginAtZero: true
+
+                                    }
+
+                                }
+
+                    }
+
+                }
+            );
+
+    }
+
+
+    // ==========================================
+    // EVENTO DO BOTÃO
+    // ==========================================
+
+    botaoGerar.addEventListener(
+        "click",
+        gerarGrafico
+    );
+
+
+    // ==========================================
+    // GERA O PRIMEIRO GRÁFICO AUTOMATICAMENTE
+    // ==========================================
+
+    gerarGrafico();
+
+</script>
+
+<% } %>
+
+
+    <!-- Bootstrap JS -->
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    ></script>
+
+</body>
+
+</html>
