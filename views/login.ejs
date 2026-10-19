@@ -1,71 +1,57 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/css/style.css">
-
     <title>Login - DataMind</title>
-
 </head>
+<body class="pagina-auth">
 
-<body>
+    <main class="auth-container">
 
-    <h1>Entrar no DataMind</h1>
+        <section class="painel-marca">
+            <div class="marca">
+                <h2>DATA</h2>
+                <h2>MIND</h2>
+                <p>Transformando dados em decisões inteligentes!</p>
+            </div>
+            <small class="rodape-marca">© DataMind 2026</small>
+        </section>
 
-    <form action="/login" method="POST">
+        <section class="painel-formulario">
+            <div class="formulario-conteudo">
 
-        <div>
+                <header class="formulario-header">
+                    <h1>Bem-vindo de volta!</h1>
+                    <p>Faça login para acessar a sua conta</p>
+                </header>
 
-            <label for="email">
-                Email
-            </label>
+                <form action="/login" method="POST" class="form-auth">
 
-            <input
-                type="email"
-                id="email"
-                name="email"
-                required
-            >
+                    <div class="campo">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
 
-        </div>
+                    <div class="campo">
+                        <label for="senha">Senha</label>
+                        <input type="password" id="senha" name="senha" required>
+                    </div>
 
-        <br>
+                    <button class="botao-auth" type="submit">Entrar</button>
+                </form>
 
-        <div>
+                <p class="texto-alternativo">
+                    Ainda não tem uma conta?
+                    <a href="/cadastro">Cadastre-se</a>
+                </p>
 
-            <label for="senha">
-                Senha
-            </label>
+            </div>
+        </section>
 
-            <input
-                type="password"
-                id="senha"
-                name="senha"
-                required
-            >
-
-        </div>
-
-        <br>
-
-        <button class="botão" type="submit">
-            Entrar
-        </button>
-
-    </form>
-
-    <p>
-        Ainda não possui uma conta?
-        <a href="/cadastro">Criar conta</a>
-    </p>
+    </main>
 
 </body>
-
 </html>

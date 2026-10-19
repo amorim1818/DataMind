@@ -1,81 +1,65 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/css/style.css">
-
     <title>Cadastro - DataMind</title>
-
 </head>
+<body class="pagina-auth">
 
-<body>
+    <main class="auth-container">
 
-    <h1>Criar conta</h1>
+        <section class="painel-marca">
+            <div class="marca">
+                <h2>DATA</h2>
+                <h2>MIND</h2>
+                <p>Transformando dados em decisões inteligentes!</p>
+            </div>
+            <small class="rodape-marca">© DataMind 2026</small>
+        </section>
 
-    <form action="/cadastro" method="POST">
+        <section class="painel-formulario">
+            <div class="formulario-conteudo">
 
-        <div>
+                <header class="formulario-header">
+                    <h1>Bem-vindo!</h1>
+                    <p>Cadastre uma conta</p>
+                </header>
 
-            <label for="nome">
-                Nome
-            </label>
+                <form action="/cadastro" method="POST" class="form-auth">
 
-            <input
-                type="text"
-                id="nome"
-                name="nome"
-                required
-            >
+                    <div class="campo">
+                        <label for="nome">Nome</label>
+                        <input type="text" id="nome" name="nome" required>
+                    </div>
 
-        </div>
+                    <div class="campo">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
 
-        <br>
+                    <div class="campo">
+                        <label for="senha">Senha</label>
+                        <input type="password" id="senha" name="senha" required>
+                    </div>
 
-        <div>
+                    <button class="botao-auth" type="submit">
+                        Criar conta
+                    </button>
 
-            <label for="email">
-                Email
-            </label>
+                </form>
 
-            <input
-                type="email"
-                id="email"
-                name="email"
-                required
-            >
+                <p class="texto-alternativo">
+                    Já tem uma conta?
+                    <a href="/login">Entrar</a>
+                </p>
 
-        </div>
+            </div>
+        </section>
 
-        <br>
-
-        <div>
-
-            <label for="senha">
-                Senha
-            </label>
-
-            <input
-                type="password"
-                id="senha"
-                name="senha"
-                required
-            >
-
-        </div>
-
-        <br>
-
-        <button type="submit">
-            Criar conta
-        </button>
-
-    </form>
+    </main>
 
 </body>
-
 </html>
