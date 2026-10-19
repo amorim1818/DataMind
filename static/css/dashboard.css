@@ -1,0 +1,495 @@
+/* DataMind — Dashboard
+   Carregue depois do Bootstrap e de sidebar.css.
+   Mantem os IDs/classes do template EJS existente.
+*/
+
+:root {
+    --dm-bg: #f7f6fc;
+    --dm-surface: #ffffff;
+    --dm-purple: #35158c;
+    --dm-purple-strong: #4b20ad;
+    --dm-purple-soft: #eee8ff;
+    --dm-text: #21164a;
+    --dm-muted: #8d86a5;
+    --dm-border: #d9d5e3;
+    --dm-radius: 14px;
+    --dm-shadow: 0 3px 12px rgba(40, 20, 94, 0.045);
+}
+
+html {
+    min-height: 100%;
+    background: var(--dm-bg);
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    color: var(--dm-text);
+    background: var(--dm-bg);
+    font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.45;
+}
+
+/* Layout principal */
+#dashboard-container {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(330px, 0.95fr);
+    grid-template-areas:
+        "header header"
+        "file file"
+        "metrics metrics"
+        "charts stats"
+        "columns columns";
+    align-content: start;
+    align-items: start;
+    gap: 22px 24px;
+    width: auto;
+    max-width: none;
+    min-height: 100vh;
+    margin: 0;
+    padding: 28px 30px 34px !important;
+}
+
+#dashboard-header {
+    grid-area: header;
+    min-width: 0;
+    margin: 0 !important;
+    padding-bottom: 2px;
+}
+
+#dashboard-header .d-flex {
+    gap: 20px;
+}
+
+#dashboard-title {
+    margin: 0 0 5px;
+    color: var(--dm-purple);
+    font-size: clamp(1.8rem, 2.1vw, 2.3rem);
+    font-weight: 750;
+    letter-spacing: -0.035em;
+}
+
+#dashboard-welcome {
+    color: var(--dm-muted) !important;
+    font-size: 0.9rem;
+}
+
+#btn-upload {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 10px 18px;
+    color: #fff;
+    background: var(--dm-purple-strong);
+    border: 1px solid var(--dm-purple-strong);
+    border-radius: 9px;
+    box-shadow: 0 4px 10px rgba(75, 32, 173, 0.14);
+    font-size: 0.9rem;
+    font-weight: 650;
+    text-decoration: none;
+}
+
+#btn-upload:hover {
+    background: var(--dm-purple);
+    border-color: var(--dm-purple);
+}
+
+#arquivo-section {
+    grid-area: file;
+    min-width: 0;
+    margin: 0 !important;
+}
+
+#indicadores-section {
+    grid-area: metrics;
+    min-width: 0;
+    margin: 0 !important;
+}
+
+#graficos-section {
+    grid-area: charts;
+    min-width: 0;
+    margin: 0 !important;
+}
+
+#estatisticas-section {
+    grid-area: stats;
+    min-width: 0;
+    margin: 0 !important;
+}
+
+#colunas-section {
+    grid-area: columns;
+    min-width: 0;
+    margin: 0 !important;
+}
+
+#arquivo-section > h2,
+#indicadores-section > h2,
+#graficos-section > h2,
+#estatisticas-section > h2,
+#colunas-section > h2 {
+    margin: 0 0 12px !important;
+    color: var(--dm-purple);
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+#arquivo-card,
+#sem-arquivo,
+#configuracao-grafico,
+#grafico-principal-card,
+#estatisticas-section .card,
+#colunas-section .card {
+    background: var(--dm-surface);
+    border: 1px solid var(--dm-border) !important;
+    border-radius: var(--dm-radius) !important;
+    box-shadow: var(--dm-shadow) !important;
+}
+
+#arquivo-card .card-body {
+    padding: 16px 18px;
+}
+
+#arquivo-nome {
+    margin-bottom: 5px;
+    color: var(--dm-text);
+    font-size: 1rem;
+    font-weight: 650;
+}
+
+#arquivo-tipo {
+    color: var(--dm-muted) !important;
+    font-size: 0.82rem;
+}
+
+#sem-arquivo,
+#sem-analise {
+    padding: 14px 16px;
+    border-radius: 10px;
+}
+
+/* Cards de indicadores */
+#indicadores-section .row {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+    margin: 0 !important;
+}
+
+#indicadores-section .row > [class*="col-"] {
+    width: auto !important;
+    min-width: 0;
+    padding: 0 !important;
+}
+
+#indicadores-section .card {
+    height: 100%;
+    min-height: 100px;
+    background: var(--dm-surface);
+    border: 1px solid var(--dm-border);
+    border-radius: 13px;
+    box-shadow: var(--dm-shadow) !important;
+    text-align: center;
+}
+
+#indicadores-section .card-body {
+    padding: 17px 18px 15px;
+}
+
+#indicadores-section .text-muted {
+    color: var(--dm-muted) !important;
+    font-size: 0.82rem;
+    font-weight: 600;
+}
+
+#indicadores-section .card h3 {
+    margin: 0;
+    color: var(--dm-purple);
+    font-size: 1.7rem;
+    font-weight: 750;
+    line-height: 1.2;
+}
+
+/* Configuracao e grafico */
+#configuracao-grafico {
+    margin-bottom: 14px !important;
+}
+
+#configuracao-grafico .card-body,
+#grafico-principal-card .card-body {
+    padding: 18px;
+}
+
+#configuracao-grafico .row {
+    --bs-gutter-x: 12px;
+    --bs-gutter-y: 12px;
+}
+
+#configuracao-grafico .form-label {
+    display: block;
+    margin-bottom: 7px;
+    color: var(--dm-text);
+    font-size: 0.82rem;
+    font-weight: 650;
+}
+
+#configuracao-grafico .form-select {
+    min-height: 40px;
+    color: var(--dm-text);
+    background-color: #fff;
+    border: 1px solid var(--dm-border);
+    border-radius: 8px;
+    font-size: 0.88rem;
+    box-shadow: none;
+}
+
+#configuracao-grafico .form-select:focus {
+    border-color: #8f70df;
+    box-shadow: 0 0 0 3px rgba(99, 46, 208, 0.12);
+}
+
+#btn-gerar-grafico {
+    min-height: 39px;
+    padding: 9px 16px;
+    color: #fff;
+    background: var(--dm-purple-strong);
+    border: 1px solid var(--dm-purple-strong);
+    border-radius: 8px;
+    font-size: 0.88rem;
+    font-weight: 650;
+}
+
+#btn-gerar-grafico:hover {
+    background: var(--dm-purple);
+}
+
+#grafico-principal-card .card-body {
+    min-width: 0;
+}
+
+#titulo-grafico {
+    margin-bottom: 16px !important;
+    color: var(--dm-purple);
+    font-size: 0.98rem;
+    font-weight: 700;
+}
+
+#grafico-principal-container {
+    width: 100%;
+    height: 330px !important;
+    min-height: 260px;
+}
+
+/* Estatisticas: uma coluna de cards, com duas metricas por linha */
+#estatisticas-section > .row {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+    margin: 0 !important;
+}
+
+#estatisticas-section > .row > [class*="col-"] {
+    width: auto !important;
+    min-width: 0;
+    padding: 0 !important;
+}
+
+#estatisticas-section .card-body {
+    padding: 18px;
+}
+
+#estatisticas-section .card h3 {
+    margin-bottom: 14px !important;
+    color: var(--dm-purple);
+    font-size: 1rem;
+    font-weight: 750;
+}
+
+#estatisticas-section .card .row {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin: 0 !important;
+}
+
+#estatisticas-section .card .row > [class*="col-"] {
+    width: auto !important;
+    min-width: 0;
+    padding: 0 !important;
+}
+
+#estatisticas-section .border.rounded {
+    height: 100%;
+    min-height: 58px;
+    padding: 11px 12px !important;
+    overflow-wrap: anywhere;
+    background: #fff;
+    border-color: var(--dm-border) !important;
+    border-radius: 8px !important;
+}
+
+#estatisticas-section small.text-muted {
+    display: block;
+    margin-bottom: 4px;
+    color: var(--dm-muted) !important;
+    font-size: 0.75rem;
+}
+
+#estatisticas-section .fs-5 {
+    color: var(--dm-purple);
+    font-size: 1.05rem !important;
+    font-weight: 750;
+}
+
+/* Colunas numericas e de texto */
+#colunas-section > .row {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin: 0 !important;
+}
+
+#colunas-section > .row > [class*="col-"] {
+    width: auto !important;
+    min-width: 0;
+    padding: 0 !important;
+}
+
+#colunas-section .card-body {
+    padding: 18px;
+}
+
+#colunas-section .card h3 {
+    margin-bottom: 12px;
+    color: var(--dm-purple);
+    font-size: 0.98rem;
+    font-weight: 700;
+}
+
+#colunas-section .list-group-item {
+    padding: 9px 0;
+    color: var(--dm-text);
+    background: transparent;
+    border-color: #e8e4ef;
+    font-size: 0.86rem;
+}
+
+#colunas-section .text-muted {
+    color: var(--dm-muted) !important;
+}
+
+/* Foco acessivel */
+a,
+button,
+input,
+select {
+    -webkit-tap-highlight-color: transparent;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+    outline: 2px solid #8f70df;
+    outline-offset: 2px;
+}
+
+/* Layout responsivo */
+@media (max-width: 1100px) {
+    #dashboard-container {
+        grid-template-columns: minmax(0, 1fr) !important;
+        grid-template-areas:
+            "header"
+            "file"
+            "metrics"
+            "charts"
+            "stats"
+            "columns" !important;
+        padding: 22px !important;
+    }
+
+    #estatisticas-section > .row {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 700px) {
+    #dashboard-container {
+        padding: 16px 12px 24px !important;
+        gap: 16px !important;
+    }
+
+    #dashboard-header .d-flex {
+        align-items: flex-start !important;
+        flex-direction: column;
+    }
+
+    #dashboard-title {
+        font-size: 1.75rem;
+    }
+
+    #btn-upload {
+        width: 100%;
+    }
+
+    #indicadores-section .row {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    #estatisticas-section > .row,
+    #colunas-section > .row {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    #estatisticas-section .card .row {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    #grafico-principal-container {
+        height: 270px !important;
+    }
+}
+
+/* Regras finais para vencer estilos antigos da folha principal */
+#dashboard-container.container-fluid {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1.15fr) minmax(330px, 0.95fr) !important;
+    grid-template-areas:
+        "header header"
+        "file file"
+        "metrics metrics"
+        "charts stats"
+        "columns columns" !important;
+    align-items: start !important;
+    align-content: start !important;
+    gap: 22px 24px !important;
+    width: auto !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 28px 30px 34px !important;
+}
+
+@media (max-width: 1100px) {
+    #dashboard-container.container-fluid {
+        grid-template-columns: minmax(0, 1fr) !important;
+        grid-template-areas:
+            "header"
+            "file"
+            "metrics"
+            "charts"
+            "stats"
+            "columns" !important;
+        padding: 22px !important;
+    }
+}
+
+@media (max-width: 700px) {
+    #dashboard-container.container-fluid {
+        padding: 16px 12px 24px !important;
+        gap: 16px !important;
+    }
+}
