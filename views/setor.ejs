@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>DataMind - Selecionar setor</title>
+
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+</head>
+
+<body>
+
+    <main
+        id="setor-container"
+        class="container py-5"
+    >
+
+        <!-- Cabeçalho -->
+
+        <header
+            id="setor-header"
+            class="text-center mb-5"
+        >
+
+            <h1
+                id="setor-title"
+                class="fw-bold"
+            >
+                Selecione o setor
+            </h1>
+
+            <p
+                id="setor-description"
+                class="text-muted"
+            >
+                Escolha o setor que deseja analisar no DataMind.
+            </p>
+
+        </header>
+
+
+        <!-- Formulário -->
+
+        <form
+            id="setor-form"
+            action="/setor"
+            method="POST"
+        >
+
+            <div
+                id="setores-grid"
+                class="row g-4"
+            >
+
+
+                <!-- RH -->
+
+                <div
+                    id="setor-rh-container"
+                    class="col-md-6 col-lg-3"
+                >
+
+                    <label
+                        for="setor-rh"
+                        id="setor-rh-card"
+                        class="w-100 h-100"
+                    >
+
+                        <input
+                            type="radio"
+                            id="setor-rh"
+                            name="setor"
+                            value="rh"
+                            class="d-none setor-radio"
+                        >
+
+                        <div
+                            class="card h-100 shadow-sm setor-card"
+                        >
+
+                            <div
+                                class="card-body text-center p-4"
+                            >
+
+                                <div
+                                    id="setor-rh-icon"
+                                    class="fs-1 mb-3"
+                                >
+                                    👥
+                                </div>
+
+                                <h2
+                                    id="setor-rh-title"
+                                    class="h4 fw-bold"
+                                >
+                                    RH
+                                </h2>
+
+                                <p
+                                    id="setor-rh-description"
+                                    class="text-muted"
+                                >
+                                    Análise de funcionários,
+                                    cargos, salários e
+                                    informações de recursos humanos.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </label>
+
+                </div>
+
+
+                <!-- Financeiro -->
+
+                <div
+                    id="setor-financeiro-container"
+                    class="col-md-6 col-lg-3"
+                >
+
+                    <label
+                        for="setor-financeiro"
+                        id="setor-financeiro-card"
+                        class="w-100 h-100"
+                    >
+
+                        <input
+                            type="radio"
+                            id="setor-financeiro"
+                            name="setor"
+                            value="financeiro"
+                            class="d-none setor-radio"
+                        >
+
+                        <div
+                            class="card h-100 shadow-sm setor-card"
+                        >
+
+                            <div
+                                class="card-body text-center p-4"
+                            >
+
+                                <div
+                                    id="setor-financeiro-icon"
+                                    class="fs-1 mb-3"
+                                >
+                                    💰
+                                </div>
+
+                                <h2
+                                    id="setor-financeiro-title"
+                                    class="h4 fw-bold"
+                                >
+                                    Financeiro
+                                </h2>
+
+                                <p
+                                    id="setor-financeiro-description"
+                                    class="text-muted"
+                                >
+                                    Análise de receitas,
+                                    despesas, custos,
+                                    pagamentos e resultados.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </label>
+
+                </div>
+
+
+                <!-- Comercial -->
+
+                <div
+                    id="setor-comercial-container"
+                    class="col-md-6 col-lg-3"
+                >
+
+                    <label
+                        for="setor-comercial"
+                        id="setor-comercial-card"
+                        class="w-100 h-100"
+                    >
+
+                        <input
+                            type="radio"
+                            id="setor-comercial"
+                            name="setor"
+                            value="comercial"
+                            class="d-none setor-radio"
+                        >
+
+                        <div
+                            class="card h-100 shadow-sm setor-card"
+                        >
+
+                            <div
+                                class="card-body text-center p-4"
+                            >
+
+                                <div
+                                    id="setor-comercial-icon"
+                                    class="fs-1 mb-3"
+                                >
+                                    📈
+                                </div>
+
+                                <h2
+                                    id="setor-comercial-title"
+                                    class="h4 fw-bold"
+                                >
+                                    Comercial
+                                </h2>
+
+                                <p
+                                    id="setor-comercial-description"
+                                    class="text-muted"
+                                >
+                                    Análise de vendas,
+                                    clientes, produtos,
+                                    vendedores e faturamento.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </label>
+
+                </div>
+
+
+                <!-- Personalizado -->
+
+                <div
+                    id="setor-personalizado-container"
+                    class="col-md-6 col-lg-3"
+                >
+
+                    <label
+                        for="setor-personalizado"
+                        id="setor-personalizado-card"
+                        class="w-100 h-100"
+                    >
+
+                        <input
+                            type="radio"
+                            id="setor-personalizado"
+                            name="setor"
+                            value="personalizado"
+                            class="d-none setor-radio"
+                        >
+
+                        <div
+                            class="card h-100 shadow-sm setor-card"
+                        >
+
+                            <div
+                                class="card-body text-center p-4"
+                            >
+
+                                <div
+                                    id="setor-personalizado-icon"
+                                    class="fs-1 mb-3"
+                                >
+                                    ⚙️
+                                </div>
+
+                                <h2
+                                    id="setor-personalizado-title"
+                                    class="h4 fw-bold"
+                                >
+                                    Personalizado
+                                </h2>
+
+                                <p
+                                    id="setor-personalizado-description"
+                                    class="text-muted"
+                                >
+                                    Analise seus próprios dados
+                                    sem utilizar um setor
+                                    predefinido.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <!-- Mensagem de erro -->
+
+            <div
+                id="setor-mensagem"
+                class="alert alert-danger d-none mt-4"
+                role="alert"
+            >
+                Selecione um setor para continuar.
+            </div>
+
+
+            <!-- Botões -->
+
+            <div
+                id="setor-actions"
+                class="d-flex justify-content-center gap-3 mt-5"
+            >
+
+                <a
+                    id="btn-voltar-dashboard"
+                    href="/dashboard"
+                    class="btn btn-secondary"
+                >
+                    Voltar
+                </a>
+
+                <button
+                    type="submit"
+                    id="btn-continuar-setor"
+                    class="btn btn-primary"
+                >
+                    Continuar
+                </button>
+
+            </div>
+
+        </form>
+
+    </main>
+
+
+    <!-- JavaScript -->
+
+    <script>
+
+        const formulario =
+            document.getElementById("setor-form");
+
+        const mensagem =
+            document.getElementById("setor-mensagem");
+
+        const radios =
+            document.querySelectorAll(
+                ".setor-radio"
+            );
+
+        const cards =
+            document.querySelectorAll(
+                ".setor-card"
+            );
+
+
+        /*
+         * Destaca o setor selecionado
+         */
+
+        radios.forEach(
+            radio => {
+
+                radio.addEventListener(
+                    "change",
+                    () => {
+
+                        cards.forEach(
+                            card => {
+
+                                card.classList.remove(
+                                    "border-primary",
+                                    "border-3"
+                                );
+
+                            }
+                        );
+
+                        if (radio.checked) {
+
+                            const card =
+                                radio.parentElement
+                                    .querySelector(
+                                        ".setor-card"
+                                    );
+
+                            card.classList.add(
+                                "border-primary",
+                                "border-3"
+                            );
+
+                            mensagem.classList.add(
+                                "d-none"
+                            );
+
+                        }
+
+                    }
+                );
+
+            }
+        );
+
+
+        /*
+         * Validação do formulário
+         */
+
+        formulario.addEventListener(
+            "submit",
+            event => {
+
+                const selecionado =
+                    document.querySelector(
+                        'input[name="setor"]:checked'
+                    );
+
+                if (!selecionado) {
+
+                    event.preventDefault();
+
+                    mensagem.classList.remove(
+                        "d-none"
+                    );
+
+                    return;
+
+                }
+
+            }
+        );
+
+    </script>
+
+
+    <!-- Bootstrap JS -->
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    ></script>
+
+</body>
+
+</html>

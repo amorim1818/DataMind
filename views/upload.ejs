@@ -43,14 +43,44 @@
                 Enviar arquivo
             </h1>
 
-            <p
-                id="upload-description"
-                class="text-muted"
-            >
-                Envie uma planilha para que o DataMind
-                possa analisar seus dados.
-            </p>
+           <p
+    id="upload-description"
+    class="text-muted"
+>
+    Envie uma planilha para que o DataMind
+    possa analisar seus dados.
+</p>
 
+<div
+    id="setor-selecionado"
+    class="alert alert-primary"
+>
+
+    <strong>Setor selecionado:</strong>
+
+    <span id="setor-nome">
+
+        <% if (setor === "rh") { %>
+            RH
+        <% } else if (setor === "financeiro") { %>
+            Financeiro
+        <% } else if (setor === "comercial") { %>
+            Comercial
+        <% } else if (setor === "personalizado") { %>
+            Personalizado
+        <% } %>
+
+    </span>
+
+    <a
+        id="alterar-setor"
+        href="/setor"
+        class="ms-3"
+    >
+        Alterar setor
+    </a>
+
+</div>
         </header>
 
 
