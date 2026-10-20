@@ -1,70 +1,139 @@
-const { execFile } = require("child_process");
-const path = require("path");
+const {
+    execFile
+} = require("child_process");
 
-function analisarArquivo(caminhoArquivo) {
+const path =
+    require("path");
 
-    return new Promise((resolve, reject) => {
 
-        const python = path.join(
-            __dirname,
-            "../../.venv/Scripts/python.exe"
-        );
+function analisarArquivo(
+    caminhoArquivo,
+    setor
+) {
 
-        const script = path.join(
-            __dirname,
-            "../../python/analise.py"
-        );
+    return new Promise(
+        (
+            resolve,
+            reject
+        ) => {
 
-        console.log("=== INICIANDO ANÁLISE PYTHON ===");
-        console.log("Python:", python);
-        console.log("Script:", script);
-        console.log("Arquivo:", caminhoArquivo);
 
-        execFile(
-            python,
-            [script, caminhoArquivo],
-            (erro, stdout, stderr) => {
+            /*
+             * Python da máquina virtual
+             */
 
-                console.log("=== PYTHON STDOUT ===");
-                console.log(stdout);
+            const python =
+                path.join(
 
-                console.log("=== PYTHON STDERR ===");
-                console.log(stderr);
+                    __dirname,
 
-                if (erro) {
+                    "../../.venv/Scripts/python.exe"
 
-                    console.error("=== ERRO AO EXECUTAR PYTHON ===");
-                    console.error(erro);
+                );
 
-                    return reject(erro);
+
+            /*
+             * Script Python
+             */
+
+            const script =
+                path.join(
+
+                    __dirname,
+
+                    "../../python/analise.py"
+
+                );
+
+
+            /*
+             * Executa Python
+             */
+
+            execFile(
+
+                python,
+
+                [
+                    script,
+                    caminhoArquivo,
+                    setor
+                ],
+
+                (
+                    erro,
+                    stdout,
+                    stderr
+                ) => {
+
+
+                    /*
+                     * Erro na execução
+                     */
+
+                    if (erro) {
+
+                        console.error(
+                            "Erro ao executar Python:"
+                        );
+
+                        console.error(
+                            stderr
+                        );
+
+                        return reject(
+                            erro
+                        );
+
+                    }
+
+
+                    /*
+                     * Converte JSON
+                     */
+
+                    try {
+
+                        const resultado =
+                            JSON.parse(
+                                stdout
+                            );
+
+
+                        resolve(
+                            resultado
+                        );
+
+
+                    } catch (erro) {
+
+                        console.error(
+                            "Erro ao interpretar resposta do Python:"
+                        );
+
+                        console.error(
+                            stdout
+                        );
+
+
+                        reject(
+                            erro
+                        );
+
+                    }
+
                 }
 
-                try {
+            );
 
-                    const resultado = JSON.parse(stdout);
+        }
+    );
 
-                    console.log("=== JSON RECEBIDO DO PYTHON ===");
-                    console.log(resultado);
-
-                    resolve(resultado);
-
-                } catch (erro) {
-
-                    console.error(
-                        "=== ERRO AO INTERPRETAR JSON ==="
-                    );
-
-                    console.error(erro);
-                    console.error("STDOUT RECEBIDO:");
-                    console.error(stdout);
-
-                    reject(erro);
-                }
-            }
-        );
-    });
 }
 
+
 module.exports = {
+
     analisarArquivo
+
 };

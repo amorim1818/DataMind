@@ -2,7 +2,6 @@
 <html lang="pt-BR">
 
 <head>
-
     <meta charset="UTF-8">
 
     <meta
@@ -12,7 +11,6 @@
 
     <title>DataMind - Dashboard</title>
 
-    <!-- Bootstrap -->
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
         rel="stylesheet"
@@ -20,304 +18,231 @@
     <link rel="stylesheet" href="/static/css/sidebar.css">
     <link rel="stylesheet" href="/static/css/dashboard.css">
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
 
-    <div
-        id="dashboard-container"
-        class="container-fluid py-4"
+<div class="container py-5">
+
+    <!-- CABEÇALHO -->
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+            <h1 class="fw-bold">
+                Dashboard
+            </h1>
+
+            <p class="text-muted mb-0">
+                Bem-vindo, <%= usuario.nome %>
+            </p>
+        </div>
+
+      <div class="d-flex gap-2">
+
+    <a
+        href="/historico"
+        class="btn btn-outline-primary"
     >
-
-        <!-- ===================================== -->
-        <!-- CABEÇALHO -->
-        <!-- ===================================== -->
-
-        <header
-            id="dashboard-header"
-            class="mb-4"
-        >
-
-            <div class="d-flex justify-content-between align-items-center">
-
-                <div>
-
-                    <h1
-                        id="dashboard-title"
-                        class="fw-bold"
-                    >
-                        Dashboard
-                    </h1>
-
-                    <p
-                        id="dashboard-welcome"
-                        class="text-muted mb-0"
-                    >
-                        Bem-vindo,
-                        <strong>
-                            <%= usuario.nome %>
-                        </strong>!
-                    </p>
-
-                </div>
-
-                <a
-                    id="btn-upload"
-                    class="btn btn-primary"
-                    href="/upload"
-                >
-                    Enviar arquivo
-                </a>
-
-            </div>
-
-        </header>
-
-
-        <!-- ===================================== -->
-        <!-- ARQUIVO ANALISADO -->
-        <!-- ===================================== -->
-
-        <section
-            id="arquivo-section"
-            class="mb-4"
-        >
-
-            <h2 class="h4 mb-3">
-                Arquivo analisado
-            </h2>
-
-            <% if (uploads && uploads.length > 0) { %>
-
-                <div
-                    id="arquivo-card"
-                    class="card shadow-sm"
-                >
-
-                    <div class="card-body">
-
-                        <h3
-                            id="arquivo-nome"
-                            class="h5"
-                        >
-                            <%= uploads[0].nome_arquivo %>
-                        </h3>
-
-                        <p
-                            id="arquivo-tipo"
-                            class="text-muted mb-0"
-                        >
-                            Arquivo analisado pelo DataMind
-                        </p>
-
-                    </div>
-
-                </div>
-
-            <% } else { %>
-
-                <div
-                    id="sem-arquivo"
-                    class="alert alert-info"
-                >
-                    Você ainda não enviou nenhum arquivo.
-                </div>
-
-            <% } %>
-
-        </section>
-
-
-        <% if (analise) { %>
-
-
-            <!-- ===================================== -->
-            <!-- INDICADORES GERAIS -->
-            <!-- ===================================== -->
-
-            <section
-                id="indicadores-section"
-                class="mb-5"
-            >
-
-                <h2 class="h4 mb-3">
-                    Indicadores gerais
-                </h2>
-
-                <div class="row g-3">
-
-                    <!-- LINHAS -->
-
-                    <div class="col-md-3">
-
-                        <div
-                            id="card-linhas"
-                            class="card shadow-sm h-100"
-                        >
-
-                            <div class="card-body">
-
-                                <p class="text-muted mb-1">
-                                    Linhas
-                                </p>
-
-                                <h3
-                                    id="valor-linhas"
-                                    class="fw-bold"
-                                >
-                                    <%= analise.linhas %>
-                                </h3>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- COLUNAS -->
-
-                    <div class="col-md-3">
-
-                        <div
-                            id="card-colunas"
-                            class="card shadow-sm h-100"
-                        >
-
-                            <div class="card-body">
-
-                                <p class="text-muted mb-1">
-                                    Colunas
-                                </p>
-
-                                <h3
-                                    id="valor-colunas"
-                                    class="fw-bold"
-                                >
-                                    <%= analise.colunas %>
-                                </h3>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- VALORES VAZIOS -->
-
-                    <div class="col-md-3">
-
-                        <div
-                            id="card-vazios"
-                            class="card shadow-sm h-100"
-                        >
-
-                            <div class="card-body">
-
-                                <p class="text-muted mb-1">
-                                    Valores vazios
-                                </p>
-
-                                <h3
-                                    id="valor-vazios"
-                                    class="fw-bold"
-                                >
-                                    <%= analise.valores_vazios %>
-                                </h3>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- DUPLICADOS -->
-
-                    <div class="col-md-3">
-
-                        <div
-                            id="card-duplicados"
-                            class="card shadow-sm h-100"
-                        >
-
-                            <div class="card-body">
-
-                                <p class="text-muted mb-1">
-                                    Duplicados
-                                </p>
-
-                                <h3
-                                    id="valor-duplicados"
-                                    class="fw-bold"
-                                >
-                                    <%= analise.duplicados %>
-                                </h3>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-
-            <!-- ===================================== -->
-            <!-- GRÁFICOS -->
-            <!-- ===================================== -->
-
-            <!-- ===================================== -->
-<!-- ANÁLISE VISUAL -->
-<!-- ===================================== -->
-
-<% if (
-    analise.dados &&
-    analise.dados.length > 0 &&
-    analise.colunas_numericas &&
-    analise.colunas_numericas.length > 0
-) { %>
-
-    <section
-        id="graficos-section"
-        class="mb-5"
+        Histórico
+    </a>
+
+    <a
+        href="/setor"
+        class="btn btn-primary"
     >
+        Nova análise
+    </a>
 
-        <h2 class="h4 mb-3">
-            Análise visual
-        </h2>
+</div>
+
+    </div>
 
 
-        <!-- ================================= -->
-        <!-- CONFIGURAÇÃO DO GRÁFICO -->
-        <!-- ================================= -->
+    <!-- SEM ANÁLISE -->
 
-        <div
-            id="configuracao-grafico"
-            class="card shadow-sm mb-4"
-        >
+    <% if (!analise) { %>
+
+        <div class="alert alert-info">
+
+            Nenhuma análise encontrada.
+
+            <a href="/setor">
+                Faça sua primeira análise.
+            </a>
+
+        </div>
+
+    <% } else { %>
+
+
+        <!-- ÚLTIMA ANÁLISE -->
+
+        <div class="card mb-4">
 
             <div class="card-body">
 
+                <h5>
+                    Última análise
+                </h5>
+
+                <p class="mb-1">
+
+                    <strong>
+                        Arquivo:
+                    </strong>
+
+                    <%= analise.arquivo %>
+
+                </p>
+
+                <p class="mb-0">
+
+                    <strong>
+                        Setor:
+                    </strong>
+
+                    <%= analise.setor || "Personalizado" %>
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- INDICADORES -->
+
+        <h3 class="mb-3">
+            Informações da planilha
+        </h3>
+
+        <div class="row g-3 mb-5">
+
+
+            <div class="col-md-3">
+
+                <div class="card h-100">
+
+                    <div class="card-body">
+
+                        <h6 class="text-muted">
+                            Linhas
+                        </h6>
+
+                        <h2>
+                            <%= analise.linhas %>
+                        </h2>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-3">
+
+                <div class="card h-100">
+
+                    <div class="card-body">
+
+                        <h6 class="text-muted">
+                            Colunas
+                        </h6>
+
+                        <h2>
+                            <%= analise.colunas %>
+                        </h2>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-3">
+
+                <div class="card h-100">
+
+                    <div class="card-body">
+
+                        <h6 class="text-muted">
+                            Valores vazios
+                        </h6>
+
+                        <h2>
+                            <%= analise.valores_vazios %>
+                        </h2>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-3">
+
+                <div class="card h-100">
+
+                    <div class="card-body">
+
+                        <h6 class="text-muted">
+                            Duplicados
+                        </h6>
+
+                        <h2>
+                            <%= analise.duplicados %>
+                        </h2>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================================= -->
+        <!-- GERADOR DE GRÁFICOS -->
+        <!-- ================================= -->
+
+        <div class="card mb-5">
+
+            <div class="card-body">
+
+                <h3>
+                    Gerador de gráficos
+                </h3>
+
+                <p class="text-muted">
+
+                    Escolha as informações da planilha
+                    que deseja visualizar.
+
+                </p>
+
+
                 <div class="row g-3">
 
 
-                    <!-- EIXO X -->
+                    <!-- CATEGORIA -->
 
-                    <div class="col-md-4">
+                    <div class="col-lg-3 col-md-6">
 
                         <label
-                            for="coluna-label"
+                            for="colunaCategoria"
                             class="form-label"
                         >
                             Categoria
                         </label>
 
                         <select
-                            id="coluna-label"
+                            id="colunaCategoria"
                             class="form-select"
                         >
 
@@ -325,10 +250,10 @@
                                 coluna => {
                             %>
 
-                                <option
-                                    value="<%= coluna %>"
-                                >
+                                <option value="<%= coluna %>">
+
                                     <%= coluna %>
+
                                 </option>
 
                             <% }) %>
@@ -338,19 +263,19 @@
                     </div>
 
 
-                    <!-- VALORES -->
+                    <!-- INDICADOR -->
 
-                    <div class="col-md-4">
+                    <div class="col-lg-3 col-md-6">
 
                         <label
-                            for="coluna-valor"
+                            for="colunaValor"
                             class="form-label"
                         >
-                            Valores
+                            Indicador
                         </label>
 
                         <select
-                            id="coluna-valor"
+                            id="colunaValor"
                             class="form-select"
                         >
 
@@ -358,10 +283,10 @@
                                 coluna => {
                             %>
 
-                                <option
-                                    value="<%= coluna %>"
-                                >
+                                <option value="<%= coluna %>">
+
                                     <%= coluna %>
+
                                 </option>
 
                             <% }) %>
@@ -371,19 +296,60 @@
                     </div>
 
 
-                    <!-- TIPO -->
+                    <!-- CÁLCULO -->
 
-                    <div class="col-md-4">
+                    <div class="col-lg-3 col-md-6">
 
                         <label
-                            for="tipo-grafico"
+                            for="tipoCalculo"
+                            class="form-label"
+                        >
+                            Cálculo
+                        </label>
+
+                        <select
+                            id="tipoCalculo"
+                            class="form-select"
+                        >
+
+                            <option value="soma">
+                                Soma
+                            </option>
+
+                            <option value="media">
+                                Média
+                            </option>
+
+                            <option value="contagem">
+                                Contagem
+                            </option>
+
+                            <option value="minimo">
+                                Mínimo
+                            </option>
+
+                            <option value="maximo">
+                                Máximo
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- TIPO DE GRÁFICO -->
+
+                    <div class="col-lg-3 col-md-6">
+
+                        <label
+                            for="tipoGrafico"
                             class="form-label"
                         >
                             Tipo de gráfico
                         </label>
 
                         <select
-                            id="tipo-grafico"
+                            id="tipoGrafico"
                             class="form-select"
                         >
 
@@ -410,11 +376,13 @@
                 </div>
 
 
-                <div class="mt-4">
+                <!-- BOTÃO -->
+
+                <div class="mt-3">
 
                     <button
                         type="button"
-                        id="btn-gerar-grafico"
+                        id="btnGerarGrafico"
                         class="btn btn-primary"
                     >
                         Gerar gráfico
@@ -422,36 +390,25 @@
 
                 </div>
 
-            </div>
 
-        </div>
-
-
-        <!-- ================================= -->
-        <!-- GRÁFICO -->
-        <!-- ================================= -->
-
-        <div
-            id="grafico-principal-card"
-            class="card shadow-sm"
-        >
-
-            <div class="card-body">
-
-                <h3
-                    id="titulo-grafico"
-                    class="h5 fw-bold mb-4"
-                >
-                    Visualização dos dados
-                </h3>
+                <!-- MENSAGEM DE ERRO -->
 
                 <div
-                    id="grafico-principal-container"
-                    style="position: relative; height: 450px;"
+                    id="mensagemGrafico"
+                    class="alert alert-warning mt-3 d-none"
+                >
+                </div>
+
+
+                <!-- GRÁFICO -->
+
+                <div
+                    class="mt-4"
+                    style="height: 450px;"
                 >
 
                     <canvas
-                        id="grafico-principal"
+                        id="graficoDinamico"
                     ></canvas>
 
                 </div>
@@ -460,439 +417,507 @@
 
         </div>
 
-    </section>
+<!-- ================================= -->
+<!-- INSIGHTS DA INTELIGÊNCIA ARTIFICIAL -->
+<!-- ================================= -->
 
-<% } %>
+<div class="card mb-5">
 
-            <!-- ===================================== -->
-            <!-- ESTATÍSTICAS -->
-            <!-- ===================================== -->
+    <div class="card-body">
 
-            <% if (
-                analise.estatisticas &&
-                Object.keys(analise.estatisticas).length > 0
-            ) { %>
+        <div
+            class="d-flex align-items-center
+                   justify-content-between
+                   flex-wrap gap-2 mb-3"
+        >
 
-                <section
-                    id="estatisticas-section"
-                    class="mb-5"
-                >
+            <div>
 
-                    <h2 class="h4 mb-3">
-                        Estatísticas dos dados
-                    </h2>
+                <h3 class="mb-1">
+                    ✨ Insights da IA
+                </h3>
 
+                <p class="text-muted mb-0">
+                    Análise inteligente dos dados
+                    realizada pelo DataMind.
+                </p>
 
-                    <div class="row g-4">
+            </div>
 
+            <span class="badge text-bg-primary">
+                Gemini
+            </span>
 
-                        <% Object.entries(analise.estatisticas).forEach(
-                            ([coluna, estatistica]) => {
-                        %>
+        </div>
 
 
-                            <div class="col-lg-6">
-
-                                <div
-                                    class="card shadow-sm h-100"
-                                >
-
-                                    <div class="card-body">
-
-                                        <h3
-                                            class="h5 fw-bold mb-4"
-                                        >
-                                            <%= coluna %>
-                                        </h3>
-
-
-                                        <div class="row g-3">
-
-
-                                            <!-- SOMA -->
-
-                                            <div class="col-6">
-
-                                                <div
-                                                    id="estatistica-soma"
-                                                    class="border rounded p-3"
-                                                >
-
-                                                    <small class="text-muted">
-                                                        Soma
-                                                    </small>
-
-                                                    <div class="fs-5 fw-bold">
-
-                                                        <%= estatistica.soma ?? "-" %>
-
-                                                    </div>
-
-                                                </div>
-
-                                            </div>
-
-
-                                            <!-- MÉDIA -->
-
-                                            <div class="col-6">
-
-                                                <div
-                                                    id="estatistica-media"
-                                                    class="border rounded p-3"
-                                                >
-
-                                                    <small class="text-muted">
-                                                        Média
-                                                    </small>
-
-                                                    <div class="fs-5 fw-bold">
-
-                                                        <%= estatistica.media ?? "-" %>
-
-                                                    </div>
-
-                                                </div>
-
-                                            </div>
-
-
-                                            <!-- MÍNIMO -->
-
-                                            <div class="col-6">
-
-                                                <div
-                                                    id="estatistica-minimo"
-                                                    class="border rounded p-3"
-                                                >
-
-                                                    <small class="text-muted">
-                                                        Mínimo
-                                                    </small>
-
-                                                    <div class="fs-5 fw-bold">
-
-                                                        <%= estatistica.minimo ?? "-" %>
-
-                                                    </div>
-
-                                                </div>
-
-                                            </div>
-
-
-                                            <!-- MÁXIMO -->
-
-                                            <div class="col-6">
-
-                                                <div
-                                                    id="estatistica-maximo"
-                                                    class="border rounded p-3"
-                                                >
-
-                                                    <small class="text-muted">
-                                                        Máximo
-                                                    </small>
-
-                                                    <div class="fs-5 fw-bold">
-
-                                                        <%= estatistica.maximo ?? "-" %>
-
-                                                    </div>
-
-                                                </div>
-
-                                            </div>
-
-
-                                            <!-- MEDIANA -->
-
-                                            <div class="col-12">
-
-                                                <div
-                                                    id="estatistica-mediana"
-                                                    class="border rounded p-3"
-                                                >
-
-                                                    <small class="text-muted">
-                                                        Mediana
-                                                    </small>
-
-                                                    <div class="fs-5 fw-bold">
-
-                                                        <%= estatistica.mediana ?? "-" %>
-
-                                                    </div>
-
-                                                </div>
-
-                                            </div>
-
-
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-
-                        <% }) %>
-
-                    </div>
-
-                </section>
-
-            <% } %>
-
-
-            <!-- ===================================== -->
-            <!-- ESTRUTURA DOS DADOS -->
-            <!-- ===================================== -->
-
-            <section
-                id="colunas-section"
-                class="mb-5"
-            >
-
-                <h2 class="h4 mb-3">
-                    Estrutura dos dados
-                </h2>
-
-                <div class="row g-4">
-
-
-                    <!-- COLUNAS NUMÉRICAS -->
-
-                    <div class="col-md-6">
-
-                        <div
-                            id="colunas-numericas-card"
-                            class="card shadow-sm h-100"
-                        >
-
-                            <div class="card-body">
-
-                                <h3 class="h5">
-                                    Colunas numéricas
-                                </h3>
-
-                                <ul
-                                    id="lista-colunas-numericas"
-                                    class="list-group list-group-flush"
-                                >
-
-                                    <% if (
-                                        analise.colunas_numericas &&
-                                        analise.colunas_numericas.length > 0
-                                    ) { %>
-
-
-                                        <% analise.colunas_numericas.forEach(
-                                            coluna => {
-                                        %>
-
-                                            <li class="list-group-item">
-                                                <%= coluna %>
-                                            </li>
-
-                                        <% }) %>
-
-
-                                    <% } else { %>
-
-                                        <li class="list-group-item text-muted">
-                                            Nenhuma coluna numérica encontrada.
-                                        </li>
-
-                                    <% } %>
-
-                                </ul>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- COLUNAS DE TEXTO -->
-
-                    <div class="col-md-6">
-
-                        <div
-                            id="colunas-texto-card"
-                            class="card shadow-sm h-100"
-                        >
-
-                            <div class="card-body">
-
-                                <h3 class="h5">
-                                    Colunas de texto
-                                </h3>
-
-                                <ul
-                                    id="lista-colunas-texto"
-                                    class="list-group list-group-flush"
-                                >
-
-                                    <% if (
-                                        analise.colunas_texto &&
-                                        analise.colunas_texto.length > 0
-                                    ) { %>
-
-
-                                        <% analise.colunas_texto.forEach(
-                                            coluna => {
-                                        %>
-
-                                            <li class="list-group-item">
-                                                <%= coluna %>
-                                            </li>
-
-                                        <% }) %>
-
-
-                                    <% } else { %>
-
-                                        <li class="list-group-item text-muted">
-                                            Nenhuma coluna de texto encontrada.
-                                        </li>
-
-                                    <% } %>
-
-                                </ul>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                </div>
-
-            </section>
-
-
-        <% } %>
-
-
-        <!-- ===================================== -->
-        <!-- SEM ANÁLISE -->
-        <!-- ===================================== -->
-
-        <% if (!analise && uploads && uploads.length > 0) { %>
+        <% if (respostaIa) { %>
 
             <div
-                id="sem-analise"
-                class="alert alert-warning"
-            >
+                id="resposta-ia"
+                class="p-3 bg-light rounded"
+                style="white-space: pre-line;"
+            ><%= respostaIa %></div>
 
-                O arquivo foi enviado, mas ainda não possui uma análise.
+        <% } else { %>
+
+            <div class="alert alert-warning mb-0">
+
+                Não foi possível gerar os insights
+                desta análise.
 
             </div>
 
         <% } %>
 
-
     </div>
 
+</div>
+        <!-- ================================= -->
+        <!-- ESTATÍSTICAS -->
+        <!-- ================================= -->
 
-    <!-- ===================================== -->
-    <!-- CHART.JS -->
-    <!-- ===================================== -->
+        <div class="card mb-5">
 
-    <script
-        src="https://cdn.jsdelivr.net/npm/chart.js"
-    ></script>
+            <div class="card-body">
+
+                <h3 class="mb-4">
+                    Estatísticas numéricas
+                </h3>
 
 
-    <!-- ===================================== -->
-    <!-- CRIAÇÃO DOS GRÁFICOS -->
-    <!-- ===================================== -->
-<% if (
-    analise &&
-    analise.dados &&
-    analise.dados.length > 0
-) { %>
+                <% if (
+                    Object.keys(
+                        analise.estatisticas
+                    ).length === 0
+                ) { %>
+
+                    <p class="text-muted">
+                        Nenhuma coluna numérica encontrada.
+                    </p>
+
+                <% } else { %>
+
+
+                    <div class="table-responsive">
+
+                        <table class="table table-striped">
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>Coluna</th>
+                                    <th>Soma</th>
+                                    <th>Média</th>
+                                    <th>Mínimo</th>
+                                    <th>Máximo</th>
+                                    <th>Mediana</th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody>
+
+                                <% Object.keys(
+                                    analise.estatisticas
+                                ).forEach(
+                                    coluna => {
+
+                                    const estatistica =
+                                        analise.estatisticas[
+                                            coluna
+                                        ];
+                                %>
+
+                                    <tr>
+
+                                        <td>
+                                            <strong>
+                                                <%= coluna %>
+                                            </strong>
+                                        </td>
+
+                                        <td>
+                                            <%= estatistica.soma %>
+                                        </td>
+
+                                        <td>
+                                            <%= estatistica.media %>
+                                        </td>
+
+                                        <td>
+                                            <%= estatistica.minimo %>
+                                        </td>
+
+                                        <td>
+                                            <%= estatistica.maximo %>
+                                        </td>
+
+                                        <td>
+                                            <%= estatistica.mediana %>
+                                        </td>
+
+                                    </tr>
+
+                                <% }) %>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                <% } %>
+
+            </div>
+
+        </div>
+
+
+        <!-- COLUNAS -->
+
+        <div class="card">
+
+            <div class="card-body">
+
+                <h3>
+                    Colunas identificadas
+                </h3>
+
+                <p class="text-muted">
+                    Colunas encontradas automaticamente
+                    pelo DataMind.
+                </p>
+
+
+                <% analise.nome_colunas.forEach(
+                    coluna => {
+                %>
+
+                    <span
+                        class="badge text-bg-secondary me-2 mb-2"
+                    >
+
+                        <%= coluna %>
+
+                    </span>
+
+                <% }) %>
+
+            </div>
+
+        </div>
+
+
+    <% } %>
+
+</div>
+
+
+<!-- ================================= -->
+<!-- JAVASCRIPT -->
+<!-- ================================= -->
+
+<% if (analise) { %>
 
 <script>
 
-    // ==========================================
-    // DADOS RECEBIDOS DO PYTHON
-    // ==========================================
+    /*
+        Dados enviados pelo Python
+        e armazenados na análise.
+    */
 
     const dadosPlanilha =
-        <%- JSON.stringify(analise.dados) %>;
+        <%- JSON.stringify(
+            analise.dados || []
+        ) %>;
 
 
-    // ==========================================
-    // ELEMENTOS
-    // ==========================================
+    const colunaCategoria =
+        document.getElementById(
+            "colunaCategoria"
+        );
 
-    const colunaLabel =
-        document.getElementById("coluna-label");
 
     const colunaValor =
-        document.getElementById("coluna-valor");
+        document.getElementById(
+            "colunaValor"
+        );
+
+
+    const tipoCalculo =
+        document.getElementById(
+            "tipoCalculo"
+        );
+
 
     const tipoGrafico =
-        document.getElementById("tipo-grafico");
+        document.getElementById(
+            "tipoGrafico"
+        );
+
 
     const botaoGerar =
-        document.getElementById("btn-gerar-grafico");
-
-    const tituloGrafico =
-        document.getElementById("titulo-grafico");
-
-    const elementoGrafico =
-        document.getElementById("grafico-principal");
+        document.getElementById(
+            "btnGerarGrafico"
+        );
 
 
-    // ==========================================
-    // INSTÂNCIA DO GRÁFICO
-    // ==========================================
+    const mensagemGrafico =
+        document.getElementById(
+            "mensagemGrafico"
+        );
+
 
     let graficoAtual = null;
 
 
-    // ==========================================
-    // GERAR GRÁFICO
-    // ==========================================
+    /*
+        =================================
+        FUNÇÃO PRINCIPAL
+        =================================
+    */
 
     function gerarGrafico() {
 
-        const colunaX =
-            colunaLabel.value;
+        esconderMensagem();
 
-        const colunaY =
+
+        const categoria =
+            colunaCategoria.value;
+
+
+        const indicador =
             colunaValor.value;
+
+
+        const calculo =
+            tipoCalculo.value;
+
 
         const tipo =
             tipoGrafico.value;
 
 
-        // Labels
+        if (!categoria || !indicador) {
+
+            mostrarMensagem(
+                "Selecione uma categoria e um indicador."
+            );
+
+            return;
+
+        }
+
+
+        /*
+            Objeto usado para agrupar
+            os registros da planilha.
+
+            Exemplo:
+
+            Comercial:
+            [15000, 22000, 18500...]
+
+            RH:
+            [9000, 7500...]
+        */
+
+        const grupos = {};
+
+
+        dadosPlanilha.forEach(
+            linha => {
+
+                let nomeCategoria =
+                    linha[categoria];
+
+
+                const valor =
+                    Number(
+                        linha[indicador]
+                    );
+
+
+                if (
+                    nomeCategoria === null ||
+                    nomeCategoria === undefined ||
+                    nomeCategoria === ""
+                ) {
+
+                    nomeCategoria =
+                        "Não informado";
+
+                }
+
+
+                /*
+                    Para soma, média,
+                    mínimo e máximo,
+                    precisamos de número.
+                */
+
+                if (
+                    calculo !== "contagem" &&
+                    Number.isNaN(valor)
+                ) {
+
+                    return;
+
+                }
+
+
+                if (!grupos[nomeCategoria]) {
+
+                    grupos[nomeCategoria] = [];
+
+                }
+
+
+                /*
+                    Contagem não precisa
+                    realmente do valor.
+                */
+
+                if (calculo === "contagem") {
+
+                    grupos[nomeCategoria].push(1);
+
+                } else {
+
+                    grupos[nomeCategoria].push(
+                        valor
+                    );
+
+                }
+
+            }
+        );
+
 
         const labels =
-            dadosPlanilha.map(
-                linha =>
-                    linha[colunaX]
+            Object.keys(grupos);
+
+
+        if (labels.length === 0) {
+
+            mostrarMensagem(
+                "Não existem dados suficientes para gerar este gráfico."
             );
 
+            return;
 
-        // Valores
+        }
+
+
+        /*
+            Calcula o resultado
+            de cada categoria.
+        */
 
         const valores =
-            dadosPlanilha.map(
-                linha =>
-                    linha[colunaY]
+            labels.map(
+                nomeCategoria => {
+
+                    const valoresGrupo =
+                        grupos[nomeCategoria];
+
+
+                    /*
+                        SOMA
+                    */
+
+                    if (calculo === "soma") {
+
+                        return valoresGrupo.reduce(
+                            (total, numero) =>
+                                total + numero,
+                            0
+                        );
+
+                    }
+
+
+                    /*
+                        MÉDIA
+                    */
+
+                    if (calculo === "media") {
+
+                        const soma =
+                            valoresGrupo.reduce(
+                                (total, numero) =>
+                                    total + numero,
+                                0
+                            );
+
+
+                        return Number(
+                            (
+                                soma /
+                                valoresGrupo.length
+                            ).toFixed(2)
+                        );
+
+                    }
+
+
+                    /*
+                        CONTAGEM
+                    */
+
+                    if (
+                        calculo === "contagem"
+                    ) {
+
+                        return valoresGrupo.length;
+
+                    }
+
+
+                    /*
+                        MÍNIMO
+                    */
+
+                    if (
+                        calculo === "minimo"
+                    ) {
+
+                        return Math.min(
+                            ...valoresGrupo
+                        );
+
+                    }
+
+
+                    /*
+                        MÁXIMO
+                    */
+
+                    if (
+                        calculo === "maximo"
+                    ) {
+
+                        return Math.max(
+                            ...valoresGrupo
+                        );
+
+                    }
+
+
+                    return 0;
+
+                }
             );
 
 
-        // Remove gráfico anterior
+        /*
+            Remove gráfico anterior
+            antes de gerar um novo.
+        */
 
         if (graficoAtual) {
 
@@ -901,34 +926,69 @@
         }
 
 
-        // Atualiza título
+        /*
+            Nome amigável do cálculo.
+        */
 
-        tituloGrafico.textContent =
-            `${colunaY} por ${colunaX}`;
+        const nomesCalculo = {
+
+            soma:
+                "Soma",
+
+            media:
+                "Média",
+
+            contagem:
+                "Contagem",
+
+            minimo:
+                "Mínimo",
+
+            maximo:
+                "Máximo"
+
+        };
 
 
-        // Cria novo gráfico
+        const nomeCalculo =
+            nomesCalculo[calculo];
+
+
+        /*
+            Criação do gráfico.
+        */
+
+        const canvas =
+            document.getElementById(
+                "graficoDinamico"
+            );
+
 
         graficoAtual =
             new Chart(
-                elementoGrafico,
+                canvas,
                 {
 
-                    type: tipo,
+                    type:
+                        tipo,
+
 
                     data: {
 
-                        labels: labels,
+                        labels:
+                            labels,
+
 
                         datasets: [
-
                             {
-
                                 label:
-                                    `${colunaY} por ${colunaX}`,
+                                    `${nomeCalculo} de ${indicador}`,
 
-                                data: valores
+                                data:
+                                    valores,
 
+                                borderWidth:
+                                    2
                             }
 
                         ]
@@ -937,23 +997,39 @@
 
                     options: {
 
-                        responsive: true,
+                        responsive:
+                            true,
 
-                        maintainAspectRatio: false,
+
+                        maintainAspectRatio:
+                            false,
+
 
                         plugins: {
+
+                            title: {
+
+                                display:
+                                    true,
+
+                                text:
+                                    `${nomeCalculo} de ${indicador} por ${categoria}`
+
+                            },
+
 
                             legend: {
 
                                 display:
-                                    tipo === "pie" ||
-                                    tipo === "doughnut"
+                                    true
 
                             }
 
                         },
 
+
                         scales:
+
                             tipo === "pie" ||
                             tipo === "doughnut"
 
@@ -963,7 +1039,8 @@
 
                                     y: {
 
-                                        beginAtZero: true
+                                        beginAtZero:
+                                            true
 
                                     }
 
@@ -977,9 +1054,39 @@
     }
 
 
-    // ==========================================
-    // EVENTO DO BOTÃO
-    // ==========================================
+    /*
+        =================================
+        MENSAGENS
+        =================================
+    */
+
+    function mostrarMensagem(texto) {
+
+        mensagemGrafico.textContent =
+            texto;
+
+
+        mensagemGrafico.classList.remove(
+            "d-none"
+        );
+
+    }
+
+
+    function esconderMensagem() {
+
+        mensagemGrafico.classList.add(
+            "d-none"
+        );
+
+    }
+
+
+    /*
+        =================================
+        EVENTO DO BOTÃO
+        =================================
+    */
 
     botaoGerar.addEventListener(
         "click",
@@ -987,22 +1094,28 @@
     );
 
 
-    // ==========================================
-    // GERA O PRIMEIRO GRÁFICO AUTOMATICAMENTE
-    // ==========================================
+    /*
+        Gera o primeiro gráfico
+        automaticamente.
+    */
 
-    gerarGrafico();
+    if (
+        dadosPlanilha.length > 0 &&
+        colunaValor.options.length > 0
+    ) {
+
+        gerarGrafico();
+
+    }
 
 </script>
 
 <% } %>
 
 
-    <!-- Bootstrap JS -->
-
-    <script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    ></script>
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+></script>
 
 </body>
 

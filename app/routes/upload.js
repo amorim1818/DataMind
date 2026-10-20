@@ -1,116 +1,329 @@
-const auth = require("../middlewares/auth");
-const upload = require("../middlewares/upload");
-const UploadModel = require("../models/UploadModel");
-const AnaliseModel = require("../models/AnaliseModel");
-const { analisarArquivo } = require("../services/analiseService");
+const auth =
+    require("../middlewares/auth");
+
+const upload =
+    require("../middlewares/upload");
+
+
+const UploadModel =
+    require("../models/UploadModel");
+
+const AnaliseModel =
+    require("../models/AnaliseModel");
+
+
+const {
+    analisarArquivo
+} =
+    require("../services/analiseService");
+
+
+const {
+    gerarInsight
+} =
+    require("../services/geminiService");
+
+
 
 module.exports = (app) => {
 
-    // ==========================================
-    // PÁGINA DE ENVIO DE ARQUIVOS
-    // ==========================================
+
+    /*
+        ==============================
+        PÁGINA DE UPLOAD
+        ==============================
+    */
+
 
     app.get(
         "/upload",
         auth,
         (req, res) => {
 
-            res.render("upload", {
-                usuario: req.session.usuario
-            });
+
+            if (!req.session.setor) {
+
+                return res.redirect(
+                    "/setor"
+                );
+
+            }
+
+
+            res.render(
+                "upload",
+                {
+
+                    usuario:
+                        req.session.usuario,
+
+                    setor:
+                        req.session.setor
+
+                }
+            );
 
         }
     );
 
 
-    // ==========================================
-    // ENVIO E ANÁLISE DO ARQUIVO
-    // ==========================================
+
+    /*
+        ==============================
+        RECEBER ARQUIVO
+        ==============================
+    */
+
 
     app.post(
         "/upload",
+
         auth,
-        upload.single("arquivo"),
+
+        upload.single(
+            "arquivo"
+        ),
 
         async (req, res) => {
 
+
             try {
+
+
+                /*
+                    Verifica setor
+                */
+
+
+                if (!req.session.setor) {
+
+                    return res
+                        .status(400)
+                        .json({
+
+                            sucesso:
+                                false,
+
+                            erro:
+                                "Nenhum setor foi selecionado."
+
+                        });
+
+                }
+
+
+
+                /*
+                    Verifica arquivo
+                */
+
 
                 if (!req.file) {
 
-                    return res.status(400).send(
-                        "Nenhum arquivo foi enviado."
-                    );
+                    return res
+                        .status(400)
+                        .json({
+
+                            sucesso:
+                                false,
+
+                            erro:
+                                "Nenhum arquivo foi enviado."
+
+                        });
 
                 }
+
+
 
                 const usuarioId =
                     req.session.usuario.id;
 
-                // Salva o arquivo no banco
+
+                const setor =
+                    req.session.setor;
+
+
+
+                /*
+                    ==============================
+                    SALVAR UPLOAD
+                    ==============================
+                */
+
+
                 const uploadId =
                     await UploadModel.criar(
+
                         usuarioId,
+
                         req.file.originalname,
+
                         req.file.path,
+
                         req.file.mimetype,
+
                         req.file.size
+
                     );
 
-                // Analisa o arquivo com Python + Pandas
+
+
+                /*
+                    ==============================
+                    PANDAS
+                    ==============================
+                */
+
+
                 const resultado =
                     await analisarArquivo(
-                        req.file.path
+
+                        req.file.path,
+
+                        setor
+
                     );
 
-                // Verifica se a análise funcionou
+
+
                 if (!resultado.sucesso) {
 
-                    return res.status(400).json({
-                        sucesso: false,
-                        erro: resultado.erro
-                    });
+                    return res
+                        .status(400)
+                        .json({
+
+                            sucesso:
+                                false,
+
+                            erro:
+                                resultado.erro
+
+                        });
 
                 }
 
-                // Transforma o resultado em texto
-                const resumo =
-                    JSON.stringify(resultado);
 
-                // Salva a análise no banco
-                await AnaliseModel.criar(
-                    uploadId,
-                    resumo
+
+                resultado.setor =
+                    setor;
+
+
+
+                /*
+                    ==============================
+                    GEMINI
+                    ==============================
+                */
+
+
+                console.log(
+                    "Gerando insights com IA..."
                 );
 
-                // Retorna o resultado
+
+                const respostaIa =
+                    await gerarInsight(
+
+                        resultado,
+
+                        setor
+
+                    );
+
+
+
+                if (respostaIa) {
+
+                    console.log(
+                        "Insights gerados."
+                    );
+
+                } else {
+
+                    console.log(
+                        "Não foi possível gerar insights."
+                    );
+
+                }
+
+
+
+                /*
+                    ==============================
+                    SALVAR ANÁLISE
+                    ==============================
+                */
+
+
+                const resumo =
+                    JSON.stringify(
+                        resultado
+                    );
+
+
+                await AnaliseModel.criar(
+
+                    uploadId,
+
+                    resumo,
+
+                    respostaIa
+
+                );
+
+
+
+                /*
+                    ==============================
+                    RESPOSTA
+                    ==============================
+                */
+
+
                 res.json({
 
-                    sucesso: true,
+                    sucesso:
+                        true,
 
                     mensagem:
-                        "Arquivo enviado e analisado com sucesso!",
+                        "Arquivo analisado com sucesso!",
 
                     arquivo:
                         req.file.originalname,
 
+                    setor:
+                        setor,
+
                     analise:
-                        resultado
+                        resultado,
+
+                    insight:
+                        respostaIa
 
                 });
+
+
 
             } catch (erro) {
 
-                console.error(erro);
 
-                res.status(500).json({
+                console.error(
+                    erro
+                );
 
-                    sucesso: false,
 
-                    erro:
-                        "Erro ao enviar ou analisar o arquivo."
+                res
+                    .status(500)
+                    .json({
 
-                });
+                        sucesso:
+                            false,
+
+                        erro:
+                            "Erro ao enviar ou analisar o arquivo."
+
+                    });
 
             }
 
