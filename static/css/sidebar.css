@@ -1,175 +1,139 @@
-/* DataMind — sidebar compartilhada
-   Classes: .app-sidebar, .sidebar-brand, .sidebar-nav, .sidebar-link,
-   .sidebar-icon, .sidebar-footer, .sidebar-logout e .has-sidebar.
-*/
 
-:root {
-    --dm-purple-950: #21105f;
-    --dm-purple-900: #2b1178;
-    --dm-purple-800: #35158c;
-    --dm-purple-700: #4b20ad;
-    --dm-purple-600: #632ed0;
-    --dm-purple-100: #eee7ff;
-    --dm-sidebar-width: 216px;
-}
+/* =====================================
+   DATAMIND — SIDEBAR
+   ===================================== */
 
-.app-sidebar {
+
+.dm-sidebar {
     position: fixed;
-    inset: 0 auto 0 0;
-    z-index: 1030;
+    top: 0;
+    left: 0;
+    bottom: 0;
+
+    width: 180px;
+    padding: 20px 12px;
+
     display: flex;
     flex-direction: column;
-    width: var(--dm-sidebar-width);
-    min-height: 100vh;
-    padding: 18px 14px 16px;
+
+    background: linear-gradient(
+        180deg,
+        #321078 0%,
+        #210957 100%
+    );
+
     color: #fff;
-    background: linear-gradient(180deg, var(--dm-purple-900), var(--dm-purple-950));
-    border-right: 1px solid rgba(255, 255, 255, 0.12);
+    z-index: 1050;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    box-shadow: 3px 0 14px rgba(30, 10, 70, 0.08);
 }
 
-.sidebar-brand {
+/* Logo */
+.dm-logo {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    min-height: 54px;
-    margin: 0 0 28px;
+
+    margin-bottom: 36px;
+
     color: #fff;
-    font-size: 1.1rem;
+    text-decoration: none;
+    font-size: 15px;
     font-weight: 800;
-    line-height: 1;
-    letter-spacing: 0.035em;
-    text-align: center;
-    text-decoration: none;
+    line-height: 1.05;
+    letter-spacing: 0.5px;
 }
 
-.sidebar-brand span {
-    display: block;
-    color: #d9c7ff;
-    font-size: 0.72rem;
-    letter-spacing: 0.18em;
+.dm-logo:hover {
+    color: #fff;
 }
 
-.sidebar-nav {
+.dm-logo-sub {
+    color: #c8a7ff;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+}
+
+/* Navegação */
+.dm-nav {
     display: flex;
     flex-direction: column;
-    gap: 6px;
-    margin: 0;
-    padding: 0;
-    list-style: none;
+    gap: 7px;
 }
 
-.sidebar-link,
-.sidebar-logout {
+
+.dm-nav-link {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
+
     width: 100%;
-    min-height: 42px;
-    padding: 10px 12px;
-    color: rgba(255, 255, 255, 0.78);
-    background: transparent;
-    border: 0;
-    border-radius: 9px;
-    font: inherit;
-    font-size: 0.92rem;
+    min-height: 38px;
+    padding: 10px 11px;
+
+    border-radius: 7px;
+    color: #d9cbed;
     text-decoration: none;
-    transition: color 0.18s ease, background-color 0.18s ease, transform 0.18s ease;
+    white-space: nowrap;
+    font-size: 12px;
+
+    transition: background 0.2s, color 0.2s;
 }
 
-.sidebar-link:hover,
-.sidebar-logout:hover {
-    color: #fff;
-    background: rgba(255, 255, 255, 0.11);
+.dm-nav-link span {
+    display: inline;
 }
 
-.sidebar-link:focus-visible,
-.sidebar-logout:focus-visible {
-    outline: 2px solid #d9c7ff;
-    outline-offset: 2px;
+.dm-nav-link i {
+    flex-shrink: 0;
+    width: 17px;
+    text-align: center;
+    font-size: 15px;
 }
 
-.sidebar-link.is-active,
-.sidebar-link[aria-current="page"] {
-    color: #fff;
-    background: var(--dm-purple-600);
-    box-shadow: 0 4px 12px rgba(12, 4, 42, 0.16);
+
+    .dm-logo {
+        font-size: 12px;
+    }
+
+    .dm-logo-sub {
+        font-size: 10px;
+    }
+
+
+/* Acabamento da sidebar DataMind */
+.dm-sidebar {
+    width: 180px;
+    padding: 20px 11px;
 }
 
-.sidebar-icon {
-    display: inline-flex;
-    flex: 0 0 20px;
-    align-items: center;
-    justify-content: center;
-    width: 20px;
-    font-size: 1.05rem;
+.dm-logo {
+    margin-bottom: 32px;
 }
 
-.sidebar-divider {
-    height: 1px;
-    margin: 12px 4px;
-    background: rgba(255, 255, 255, 0.18);
+.dm-nav {
+    gap: 5px;
 }
 
-.sidebar-footer {
+.dm-nav-link {
+    min-height: 36px;
+    padding: 9px 10px;
+    font-size: 12px;
+    border-radius: 7px;
+}
+
+.dm-nav-link i {
+    display: inline-block;
+    width: 17px;
+    font-size: 15px;
+}
+
+/* Mantém sair no rodapé */
+.dm-sidebar-bottom {
     margin-top: auto;
-    padding-top: 18px;
+    padding-top: 20px;
 }
 
-.sidebar-logout {
-    font-size: 0.88rem;
-}
 
-.has-sidebar {
-    min-height: 100vh;
-    margin-left: var(--dm-sidebar-width);
-}
-
-@media (max-width: 900px) {
-    :root {
-        --dm-sidebar-width: 76px;
-    }
-
-    .app-sidebar {
-        align-items: center;
-        padding-inline: 8px;
-    }
-
-    .sidebar-brand {
-        margin-bottom: 24px;
-        font-size: 0.85rem;
-    }
-
-    .sidebar-brand span,
-    .sidebar-link .sidebar-label,
-    .sidebar-logout .sidebar-label {
-        display: none;
-    }
-
-    .sidebar-link,
-    .sidebar-logout {
-        justify-content: center;
-        padding-inline: 8px;
-    }
-
-    .sidebar-icon {
-        flex-basis: auto;
-    }
-}
-
-@media (max-width: 520px) {
-    :root {
-        --dm-sidebar-width: 60px;
-    }
-
-    .app-sidebar {
-        padding-inline: 5px;
-    }
-
-    .sidebar-brand {
-        font-size: 0.72rem;
-    }
-
-    .sidebar-icon {
-        font-size: 1rem;
-    }
-}
