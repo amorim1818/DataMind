@@ -136,4 +136,18 @@
     padding-top: 20px;
 }
 
+.btn:hover {
+  color: var(--bs-btn-hover-color);
+  background-color: var(--bs-btn-hover-bg);
+  border-color: var(--dm-purple);
+}
 
+.btn-outline-primary {
+  --bs-btn-color:var(--bs-btn-hover-color);
+  --bs-btn-border-color: var(--bs-btn-hover-color);
+}
+
+.border-primary {
+  --bs-border-opacity: 1;
+  border-color: var(--dm-purple),var(--bs-border-opacity) !important;
+}

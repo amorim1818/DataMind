@@ -423,3 +423,30 @@ body {
         padding: 16px 10px !important;
     }
 }
+
+.btn:hover {
+  color: var(--bs-btn-hover-color);
+  background-color:var(--dm-purple);
+  border-color: var(--dm-purple);
+  transform: scale(1.05);
+}
+
+.btn-outline-primary {
+  --bs-btn-color:var(--bs-btn-hover-color);
+  --bs-btn-border-color: var(--bs-btn-hover-color);
+  transition: background-color 0.4s ease;
+  transition: transform"scale" 0.6s;
+}
+
+
+:root, [data-bs-theme="light"] {
+  --bs-body-color: translucent;
+  --bs-body-bg: translucent;
+  --bs-border-width: 1px;
+  --bs-border-color-translucent: rgba(0, 0, 0, 0.175);
+}
+
+.border-primary {
+  --bs-border-opacity: 0.3;
+  border-color: var(--dm-purple),var(--bs-border-opacity) !important;
+}

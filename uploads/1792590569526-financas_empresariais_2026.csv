@@ -1,0 +1,95 @@
+ID,Data,Categoria,Descricao,Cliente,Centro de Custo,Valor,Status
+FIN-2026-0020,05/01/2026,Manutenção & Suporte,Pacote de horas de sustentação - Orbital Telecom,Orbital Telecom,Operações,16259.97,Confirmado
+FIN-2026-0067,05/01/2026,Assinaturas de Software,Upgrade de capacidade de armazenamento - BioSaúde Brasil,BioSaúde Brasil,Marketing,9244.30,Confirmado
+FIN-2026-0056,11/01/2026,Consultoria Estratégica,Consultoria de arquitetura de dados - Prime Engenharia,Prime Engenharia,Operações,3954.12,Confirmado
+FIN-2026-0042,15/01/2026,Licenciamento de Marca,Royalties de propriedade intelectual - Prime Engenharia,Prime Engenharia,Tecnologia,4733.68,Confirmado
+FIN-2026-0008,16/01/2026,Manutenção & Suporte,Manutenção preventiva de servidores - Nexus FinTech,Nexus FinTech,Comercial,16190.17,Confirmado
+FIN-2026-0027,21/01/2026,Assinaturas de Software,Plano Anual Enterprise - Horizonte Energia,Horizonte Energia,Operações,1324.40,Confirmado
+FIN-2026-0041,22/01/2026,Manutenção & Suporte,Manutenção preventiva de servidores - Prime Engenharia,Prime Engenharia,Comercial,11215.30,Confirmado
+FIN-2026-0029,23/01/2026,Licenciamento de Marca,Royalties de propriedade intelectual - Nexus FinTech,Nexus FinTech,Marketing,10528.75,Confirmado
+FIN-2026-0002,31/01/2026,Manutenção & Suporte,SLA Suporte 24/7 Nível 3 - Horizonte Energia,Horizonte Energia,Marketing,1715.49,Confirmado
+FIN-2026-0048,31/01/2026,Consultoria Estratégica,Consultoria de arquitetura de dados - Vanguard Logística,Vanguard Logística,Comercial,5911.62,Confirmado
+FIN-2026-0092,01/02/2026,Licenciamento de Marca,Royalties de propriedade intelectual - Nexus FinTech,Nexus FinTech,Marketing,20110.56,Pendente
+FIN-2026-0052,02/02/2026,Serviços Digitais,Integração de APIs REST - Orbital Telecom,Orbital Telecom,Comercial,12969.03,Confirmado
+FIN-2026-0016,09/02/2026,Licenciamento de Marca,Uso de plataforma white-label - Vanguard Logística,Vanguard Logística,Comercial,4420.78,Confirmado
+FIN-2026-0053,11/02/2026,Treinamento & Capacitação,Imersão em Business Intelligence - TechNova Soluções,TechNova Soluções,Tecnologia,19265.24,Confirmado
+FIN-2026-0079,13/02/2026,Manutenção & Suporte,Manutenção preventiva de servidores - Vanguard Logística,Vanguard Logística,Marketing,7962.89,Pendente
+FIN-2026-0017,14/02/2026,Manutenção & Suporte,Monitoramento de infraestrutura - Horizonte Energia,Horizonte Energia,Comercial,8972.32,Pendente
+FIN-2026-0034,20/02/2026,Assinaturas de Software,Assinatura Starter Anual - BioSaúde Brasil,BioSaúde Brasil,Comercial,17455.60,Pendente
+FIN-2026-0031,22/02/2026,Serviços Digitais,Desenvolvimento web sob medida - Prime Engenharia,Prime Engenharia,Tecnologia,9558.88,Pendente
+FIN-2026-0093,24/02/2026,Serviços Digitais,Integração de APIs REST - Vanguard Logística,Vanguard Logística,Tecnologia,17220.94,Confirmado
+FIN-2026-0003,01/03/2026,Consultoria Estratégica,Planejamento trimestral de TI - Orbital Telecom,Orbital Telecom,Operações,6267.03,Pendente
+FIN-2026-0005,01/03/2026,Assinaturas de Software,Plano Anual Enterprise - Vanguard Logística,Vanguard Logística,Marketing,9262.93,Confirmado
+FIN-2026-0039,01/03/2026,Serviços Digitais,Desenvolvimento web sob medida - Omni Varejo,Omni Varejo,Comercial,14132.84,Confirmado
+FIN-2026-0090,07/03/2026,Consultoria Estratégica,Workshop de transformação digital - Vanguard Logística,Vanguard Logística,Operações,16625.93,Pendente
+FIN-2026-0071,08/03/2026,Treinamento & Capacitação,Capacitação técnica de engenharia - Lumina Design,Lumina Design,Marketing,17034.23,Confirmado
+FIN-2026-0074,09/03/2026,Serviços Digitais,Auditoria de segurança de sistemas - Alpha Seguros,Alpha Seguros,Marketing,22044.61,Confirmado
+FIN-2026-0086,12/03/2026,Treinamento & Capacitação,Treinamento de segurança da informação - BioSaúde Brasil,BioSaúde Brasil,Marketing,8798.45,Confirmado
+FIN-2026-0061,13/03/2026,Serviços Digitais,Desenvolvimento web sob medida - Horizonte Energia,Horizonte Energia,Marketing,17254.79,Confirmado
+FIN-2026-0077,16/03/2026,Treinamento & Capacitação,Capacitação técnica de engenharia - Nexus FinTech,Nexus FinTech,Operações,8762.70,Confirmado
+FIN-2026-0069,18/03/2026,Licenciamento de Marca,Extensão de contrato de marca - Horizonte Energia,Horizonte Energia,Tecnologia,19198.41,Confirmado
+FIN-2026-0021,22/03/2026,Manutenção & Suporte,Manutenção preventiva de servidores - Alpha Seguros,Alpha Seguros,Tecnologia,13164.07,Confirmado
+FIN-2026-0044,22/03/2026,Treinamento & Capacitação,Treinamento de segurança da informação - Vanguard Logística,Vanguard Logística,Comercial,14932.57,Pendente
+FIN-2026-0062,26/03/2026,Treinamento & Capacitação,Capacitação técnica de engenharia - Prime Engenharia,Prime Engenharia,Operações,2459.86,Confirmado
+FIN-2026-0065,29/03/2026,Treinamento & Capacitação,Treinamento de segurança da informação - Orbital Telecom,Orbital Telecom,Operações,10592.15,Confirmado
+FIN-2026-0064,30/03/2026,Licenciamento de Marca,Uso de plataforma white-label - Vanguard Logística,Vanguard Logística,Tecnologia,15921.56,Confirmado
+FIN-2026-0006,03/04/2026,Licenciamento de Marca,Uso de plataforma white-label - TechNova Soluções,TechNova Soluções,Marketing,21641.88,Confirmado
+FIN-2026-0046,04/04/2026,Serviços Digitais,Integração de APIs REST - Omni Varejo,Omni Varejo,Tecnologia,10536.71,Confirmado
+FIN-2026-0082,05/04/2026,Assinaturas de Software,Assinatura Starter Anual - Prime Engenharia,Prime Engenharia,Operações,5995.19,Pendente
+FIN-2026-0023,07/04/2026,Assinaturas de Software,Mensalidade Plano Pro (10 licenças) - TechNova Soluções,TechNova Soluções,Operações,3218.17,Confirmado
+FIN-2026-0007,11/04/2026,Serviços Digitais,Otimização de performance de nuvem - Horizonte Energia,Horizonte Energia,Tecnologia,16066.91,Confirmado
+FIN-2026-0009,12/04/2026,Assinaturas de Software,Assinatura Starter Anual - Omni Varejo,Omni Varejo,Operações,8815.42,Confirmado
+FIN-2026-0011,12/04/2026,Assinaturas de Software,Mensalidade Plano Pro (10 licenças) - Omni Varejo,Omni Varejo,Comercial,18500.62,Confirmado
+FIN-2026-0066,12/04/2026,Manutenção & Suporte,Manutenção preventiva de servidores - Horizonte Energia,Horizonte Energia,Tecnologia,12815.18,Pendente
+FIN-2026-0072,13/04/2026,Treinamento & Capacitação,Workshop de boas práticas ágeis - BioSaúde Brasil,BioSaúde Brasil,Operações,19971.62,Confirmado
+FIN-2026-0037,17/04/2026,Serviços Digitais,Integração de APIs REST - Prime Engenharia,Prime Engenharia,Comercial,6945.62,Pendente
+FIN-2026-0059,17/04/2026,Assinaturas de Software,Upgrade de capacidade de armazenamento - Vanguard Logística,Vanguard Logística,Tecnologia,14757.16,Confirmado
+FIN-2026-0060,17/04/2026,Manutenção & Suporte,Pacote de horas de sustentação - TechNova Soluções,TechNova Soluções,Comercial,5147.07,Confirmado
+FIN-2026-0063,26/04/2026,Serviços Digitais,Integração de APIs REST - Omni Varejo,Omni Varejo,Marketing,21138.63,Confirmado
+FIN-2026-0083,26/04/2026,Treinamento & Capacitação,Capacitação técnica de engenharia - Prime Engenharia,Prime Engenharia,Tecnologia,16474.01,Pendente
+FIN-2026-0068,28/04/2026,Manutenção & Suporte,Manutenção preventiva de servidores - Orbital Telecom,Orbital Telecom,Marketing,15117.74,Confirmado
+FIN-2026-0058,02/05/2026,Assinaturas de Software,Upgrade de capacidade de armazenamento - BioSaúde Brasil,BioSaúde Brasil,Operações,17666.00,Confirmado
+FIN-2026-0018,04/05/2026,Licenciamento de Marca,Uso de plataforma white-label - Orbital Telecom,Orbital Telecom,Comercial,18191.03,Confirmado
+FIN-2026-0080,04/05/2026,Treinamento & Capacitação,Capacitação técnica de engenharia - BioSaúde Brasil,BioSaúde Brasil,Marketing,23595.19,Pendente
+FIN-2026-0076,06/05/2026,Treinamento & Capacitação,Treinamento de segurança da informação - BioSaúde Brasil,BioSaúde Brasil,Tecnologia,16859.85,Pendente
+FIN-2026-0024,09/05/2026,Serviços Digitais,Integração de APIs REST - Alpha Seguros,Alpha Seguros,Marketing,8099.67,Confirmado
+FIN-2026-0040,13/05/2026,Licenciamento de Marca,Royalties de propriedade intelectual - TechNova Soluções,TechNova Soluções,Comercial,3339.59,Confirmado
+FIN-2026-0015,22/05/2026,Assinaturas de Software,Assinatura Starter Anual - Horizonte Energia,Horizonte Energia,Marketing,6991.95,Confirmado
+FIN-2026-0019,22/05/2026,Assinaturas de Software,Upgrade de capacidade de armazenamento - Vanguard Logística,Vanguard Logística,Tecnologia,5510.58,Pendente
+FIN-2026-0047,24/05/2026,Manutenção & Suporte,Pacote de horas de sustentação - Horizonte Energia,Horizonte Energia,Comercial,24247.13,Confirmado
+FIN-2026-0055,28/05/2026,Treinamento & Capacitação,Imersão em Business Intelligence - BioSaúde Brasil,BioSaúde Brasil,Operações,23027.90,Confirmado
+FIN-2026-0045,29/05/2026,Serviços Digitais,Desenvolvimento web sob medida - Orbital Telecom,Orbital Telecom,Operações,4888.10,Confirmado
+FIN-2026-0094,29/05/2026,Serviços Digitais,Otimização de performance de nuvem - Orbital Telecom,Orbital Telecom,Marketing,3350.13,Confirmado
+FIN-2026-0013,30/05/2026,Manutenção & Suporte,Pacote de horas de sustentação - BioSaúde Brasil,BioSaúde Brasil,Marketing,23107.03,Pendente
+FIN-2026-0081,03/06/2026,Manutenção & Suporte,SLA Suporte 24/7 Nível 3 - Horizonte Energia,Horizonte Energia,Marketing,2018.10,Pendente
+FIN-2026-0004,04/06/2026,Assinaturas de Software,Plano Anual Enterprise - Alpha Seguros,Alpha Seguros,Marketing,9311.12,Confirmado
+FIN-2026-0049,08/06/2026,Consultoria Estratégica,Consultoria de arquitetura de dados - BioSaúde Brasil,BioSaúde Brasil,Tecnologia,8593.82,Pendente
+FIN-2026-0001,17/06/2026,Serviços Digitais,Desenvolvimento web sob medida - Nexus FinTech,Nexus FinTech,Operações,5601.71,Confirmado
+FIN-2026-0014,18/06/2026,Treinamento & Capacitação,Imersão em Business Intelligence - Nexus FinTech,Nexus FinTech,Operações,21836.88,Confirmado
+FIN-2026-0089,20/06/2026,Serviços Digitais,Desenvolvimento web sob medida - BioSaúde Brasil,BioSaúde Brasil,Operações,18521.12,Confirmado
+FIN-2026-0085,23/06/2026,Serviços Digitais,Desenvolvimento web sob medida - Prime Engenharia,Prime Engenharia,Operações,6733.06,Pendente
+FIN-2026-0010,25/06/2026,Assinaturas de Software,Plano Anual Enterprise - Horizonte Energia,Horizonte Energia,Operações,6241.64,Confirmado
+FIN-2026-0026,25/06/2026,Manutenção & Suporte,Pacote de horas de sustentação - Lumina Design,Lumina Design,Marketing,8507.59,Confirmado
+FIN-2026-0057,03/07/2026,Serviços Digitais,Auditoria de segurança de sistemas - TechNova Soluções,TechNova Soluções,Marketing,8374.70,Confirmado
+FIN-2026-0028,05/07/2026,Manutenção & Suporte,SLA Suporte 24/7 Nível 3 - BioSaúde Brasil,BioSaúde Brasil,Comercial,28929.05,Confirmado
+FIN-2026-0043,07/07/2026,Assinaturas de Software,Mensalidade Plano Pro (10 licenças) - Nexus FinTech,Nexus FinTech,Marketing,23076.43,Confirmado
+FIN-2026-0030,09/07/2026,Licenciamento de Marca,Extensão de contrato de marca - Lumina Design,Lumina Design,Operações,27305.46,Pendente
+FIN-2026-0088,15/07/2026,Licenciamento de Marca,Royalties de propriedade intelectual - Omni Varejo,Omni Varejo,Operações,26487.60,Confirmado
+FIN-2026-0070,16/07/2026,Consultoria Estratégica,Consultoria de arquitetura de dados - BioSaúde Brasil,BioSaúde Brasil,Operações,2920.61,Confirmado
+FIN-2026-0091,20/07/2026,Assinaturas de Software,Mensalidade Plano Pro (10 licenças) - Horizonte Energia,Horizonte Energia,Comercial,32201.40,Confirmado
+FIN-2026-0051,21/07/2026,Consultoria Estratégica,Consultoria de arquitetura de dados - Alpha Seguros,Alpha Seguros,Marketing,19626.64,Pendente
+FIN-2026-0022,23/07/2026,Licenciamento de Marca,Royalties de propriedade intelectual - Horizonte Energia,Horizonte Energia,Tecnologia,2766.51,Pendente
+FIN-2026-0038,24/07/2026,Treinamento & Capacitação,Treinamento de segurança da informação - Prime Engenharia,Prime Engenharia,Marketing,8073.42,Confirmado
+FIN-2026-0054,27/07/2026,Serviços Digitais,Otimização de performance de nuvem - BioSaúde Brasil,BioSaúde Brasil,Operações,13173.55,Confirmado
+FIN-2026-0033,28/07/2026,Serviços Digitais,Integração de APIs REST - BioSaúde Brasil,BioSaúde Brasil,Operações,6525.28,Pendente
+FIN-2026-0012,30/07/2026,Assinaturas de Software,Assinatura Starter Anual - Nexus FinTech,Nexus FinTech,Comercial,30595.06,Confirmado
+FIN-2026-0084,08/08/2026,Treinamento & Capacitação,Imersão em Business Intelligence - Horizonte Energia,Horizonte Energia,Comercial,18875.58,Pendente
+FIN-2026-0036,10/08/2026,Consultoria Estratégica,Diagnóstico de processos operacionais - Prime Engenharia,Prime Engenharia,Marketing,8081.42,Pendente
+FIN-2026-0035,12/08/2026,Licenciamento de Marca,Royalties de propriedade intelectual - TechNova Soluções,TechNova Soluções,Comercial,28423.15,Confirmado
+FIN-2026-0073,13/08/2026,Serviços Digitais,Auditoria de segurança de sistemas - BioSaúde Brasil,BioSaúde Brasil,Operações,3413.48,Pendente
+FIN-2026-0032,14/08/2026,Manutenção & Suporte,SLA Suporte 24/7 Nível 3 - Vanguard Logística,Vanguard Logística,Comercial,22766.86,Pendente
+FIN-2026-0025,16/08/2026,Licenciamento de Marca,Uso de plataforma white-label - BioSaúde Brasil,BioSaúde Brasil,Operações,13369.24,Confirmado
+FIN-2026-0087,18/08/2026,Treinamento & Capacitação,Treinamento de segurança da informação - Prime Engenharia,Prime Engenharia,Tecnologia,15404.91,Confirmado
+FIN-2026-0075,21/08/2026,Treinamento & Capacitação,Workshop de boas práticas ágeis - Orbital Telecom,Orbital Telecom,Marketing,23207.64,Confirmado
+FIN-2026-0078,21/08/2026,Licenciamento de Marca,Royalties de propriedade intelectual - Alpha Seguros,Alpha Seguros,Operações,12913.74,Confirmado
+FIN-2026-0050,25/08/2026,Serviços Digitais,Desenvolvimento web sob medida - Prime Engenharia,Prime Engenharia,Tecnologia,2081.21,Confirmado
